@@ -2,7 +2,7 @@ import { BookPreview } from "./BookPreview.jsx"
 
 const { useState, useEffect, useRef } = React
 
-export function BookList ({books}) {
+export function BookList ({books,OnSetSelectedBookId}) {
   
     return(
         <section>
@@ -10,6 +10,9 @@ export function BookList ({books}) {
           {books.map(book=>{
             return <li key={book.id} className='book-preview'>
               <BookPreview book={book}/>
+              <div className='book-btns'>
+                <button onClick={()=>(OnSetSelectedBookId(book.id))}>book details</button>
+              </div>
             </li>
           })}
         </ul>
