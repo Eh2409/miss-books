@@ -47,7 +47,7 @@ function _creatDemoBooks() {
             "id": "OXeMG8wNskc",
             "title": "metus hendrerit",
             "description": "placerat nisi sodales suscipit tellus",
-            "thumbnail": "http://ca.org/books-photos/20.jpg",
+            "thumbnail": "../assets/img/BooksImages/1.jpg",
             "listPrice": {
                 "amount": 109,
                 "currencyCode": "EUR",
@@ -58,7 +58,7 @@ function _creatDemoBooks() {
             "id": "OXeM23G8wNskc",
             "title": "metus hendrerit",
             "description": "placerat nisi sodales suscipit tellus",
-            "thumbnail": "http://ca.org/books-photos/20.jpg",
+            "thumbnail": "../assets/img/BooksImages/2.jpg",
             "listPrice": {
                 "amount": 109,
                 "currencyCode": "EUR",
@@ -69,7 +69,40 @@ function _creatDemoBooks() {
             "id": "OXe4MG8wNskc",
             "title": "metus hendrerit",
             "description": "placerat nisi sodales suscipit tellus",
-            "thumbnail": "http://ca.org/books-photos/20.jpg",
+            "thumbnail": "../assets/img/BooksImages/3.jpg",
+            "listPrice": {
+                "amount": 109,
+                "currencyCode": "EUR",
+                "isOnSale": false
+            }
+        },
+        {
+            "id": "OXeMG84wNskc",
+            "title": "metus hendrerit",
+            "description": "placerat nisi sodales suscipit tellus",
+            "thumbnail": "../assets/img/BooksImages/4.jpg",
+            "listPrice": {
+                "amount": 109,
+                "currencyCode": "EUR",
+                "isOnSale": false
+            }
+        },
+        {
+            "id": "OXeM23G5438wNskc",
+            "title": "metus hendrerit",
+            "description": "placerat nisi sodales suscipit tellus",
+            "thumbnail": "../assets/img/BooksImages/5.jpg",
+            "listPrice": {
+                "amount": 109,
+                "currencyCode": "EUR",
+                "isOnSale": false
+            }
+        },
+        {
+            "id": "OXe4MG8w34Nskc",
+            "title": "metus hendrerit",
+            "description": "placerat nisi sodales suscipit tellus",
+            "thumbnail": "../assets/img/BooksImages/6.jpg",
             "listPrice": {
                 "amount": 109,
                 "currencyCode": "EUR",
