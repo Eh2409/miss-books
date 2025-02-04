@@ -1,4 +1,5 @@
 
+import { BookList } from '../cmps/BookList.jsx';
 import { bookSerevice } from '../services/books.service.js'
 
 const { useState, useEffect, useRef } = React
@@ -22,13 +23,7 @@ export function BookIndex (props) {
   return(
     <section>
         <h2>books</h2>
-        <ul>
-          {books.map(book=>{
-            return <li key={book.id}>
-              <h4>{book.title}</h4>
-            </li>
-          })}
-        </ul>
+        <BookList books={books}/>
     </section>
   )
 }
