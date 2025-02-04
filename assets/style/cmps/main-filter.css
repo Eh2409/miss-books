@@ -1,0 +1,41 @@
+.main-filter {
+    justify-items: center;
+    background-image: linear-gradient(to left top, #cddcfb, #d1d9fe, #d7d5ff, #dfd1ff, #e9ccff);
+    margin-block-end: 1em;
+    padding: 1em;
+    border-radius: 10px;
+    text-transform: capitalize;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.3);
+
+}
+
+.main-filter>form {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 1em;
+    width: 60vw;
+}
+
+.main-filter>form>input {
+    grid-column: 2;
+    padding: 0.3em;
+    padding-inline-start: 0.5em;
+}
+
+
+.main-filter button {
+    place-self: center;
+    grid-column: 2 span;
+    font-size: 1.2em;
+    font-weight: bold;
+    align-self: center;
+    background-image: linear-gradient(to right bottom, #ffbff3, #f4b6f0, #e8aeed, #dba6eb, #cd9fe8);
+    transition: 200ms;
+
+    &:hover {
+        filter: hue-rotate(80deg);
+    }
+}
