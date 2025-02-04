@@ -2,7 +2,7 @@ import { BookPreview } from "./BookPreview.jsx"
 
 const { useState, useEffect, useRef } = React
 
-export function BookList ({books,OnSetSelectedBookId}) {
+export function BookList ({books,OnSetSelectedBookId,onRemoveBook}) {
   
     return(
         <section>
@@ -10,8 +10,9 @@ export function BookList ({books,OnSetSelectedBookId}) {
           {books.map(book=>{
             return <li key={book.id} className='book-preview'>
               <BookPreview book={book}/>
-              <div className='book-btns'>
+              <div className='book-btns flex'>
                 <button onClick={()=>(OnSetSelectedBookId(book.id))}>book details</button>
+                <button onClick={()=>(onRemoveBook(book.id))}>remove</button>
               </div>
             </li>
           })}

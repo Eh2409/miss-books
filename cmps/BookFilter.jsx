@@ -4,13 +4,10 @@ const { useState, useEffect, useRef } = React
 export function BookFilter ({filterBy,onSetFilterBy}) {
 
   const [editFilterBy, setEditFilterBy] = useState({...filterBy})
-  console.log(editFilterBy)
+
   
   function onSetEditFilterBy(ev) {
     var {value,type,name} = ev.target
-    console.log(name);
-    
-    
     if (type==='number') value = +value
     setEditFilterBy(prev => ({...prev,[name]:value}))
   }

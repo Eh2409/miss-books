@@ -13,9 +13,9 @@ export function BookIndex (props) {
 
   const [filterBy, setFilterBy] = useState(bookSerevice.getFilterBy())
 
-  console.log(books);
-  console.log(selectedBookId);
-  console.log(filterBy);
+  // console.log(books);
+  // console.log(selectedBookId);
+  // console.log(filterBy);
   
 
   useEffect(()=>{
@@ -35,13 +35,20 @@ export function BookIndex (props) {
     .then(books => setBooks(books))
   }
 
+  function onRemoveBook(bookId) {
+    bookSerevice.remove(bookId)
+    .then(res=>setBooks(books => books.filter(book=>book.id !== bookId)))
+  }
+
   if (!books) return 'loading...'
   return(
     <section>
         <BookFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy}/>
         {selectedBookId
-         ? <BookDetails selectedBookId={selectedBookId} OnSetSelectedBookId={OnSetSelectedBookId}/> 
-         : <BookList books={books} OnSetSelectedBookId={OnSetSelectedBookId}/>} 
+         ? <BookDetails 
+         selectedBookId={selectedBookId} OnSetSelectedBookId={OnSetSelectedBookId} /> 
+         : <BookList books={books} OnSetSelectedBookId={OnSetSelectedBookId}
+         onRemoveBook ={onRemoveBook}/>} 
 
     </section>
   )
