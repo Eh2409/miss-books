@@ -1,0 +1,39 @@
+.add-edit-modal {
+    border: none;
+    padding: 0;
+    border-radius: 20px;
+
+    background-color: rgba(128, 216, 253, 0.7);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.add-edit-modal>form {
+    position: relative;
+    padding: 1em;
+    width: 50vw;
+}
+
+.add-edit-modal>form>pre {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    text-transform: capitalize;
+    gap: 0.3em;
+    margin: 0;
+}
+
+.add-edit-modal>form>pre>h2 {
+    align-self: center;
+}
+
+.add-edit-modal>form>pre>input {
+    padding: 0.5em;
+}
+
+.add-edit-modal>form>pre>.close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+}
