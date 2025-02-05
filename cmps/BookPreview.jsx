@@ -4,7 +4,7 @@ const { useState, useEffect, useRef } = React
 export function BookPreview ({book}) {
 
     const {title,description,thumbnail} = book
-    const {amount} = book.listPrice
+    const {amount,isOnSale} = book.listPrice
 
 
   return(
@@ -14,7 +14,10 @@ export function BookPreview ({book}) {
     <h4><span>description: </span> {description}</h4>
     <h4><span>price: </span> ${amount}</h4>
     </section>
-    <img src={`${thumbnail}`} alt={title} className='book-thumbnail'/>
+    <div className='thumbnail-wrapper'>
+            <img src={`${thumbnail}`} alt={title} className='book-thumbnail'/>
+            {isOnSale && <span className='ribbon'>On Sale</span> }
+    </div>
     </React.Fragment>  
   )
 }

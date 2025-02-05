@@ -76,7 +76,13 @@ export function BookDetails ({selectedBookId,OnSetSelectedBookId}) {
 
             <button onClick={()=>(OnSetSelectedBookId(null))}>back</button>
             </div>
+            
+            <div className='thumbnail-wrapper'>
             <img src={`${thumbnail}`} alt={title} className='book-thumbnail'/>
+            {isOnSale && <span className='ribbon'>On Sale</span> }
+            </div>
+
+            
         </section>
     )
 }
