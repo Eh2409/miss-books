@@ -1,25 +1,26 @@
 /* flex helpers */
 
 .flex {
-  display: flex;
+    display: flex;
 }
 
-.flex.flex-column{
+.flex.flex-column {
     flex-direction: column;
 }
 
-.flex.justify-center{
+.flex.justify-center {
     justify-content: center;
 }
 
-.flex.justify-between{
+.flex.justify-between {
     justify-content: space-between;
 }
-.flex.space-around{
+
+.flex.space-around {
     justify-content: space-around;
 }
 
-.flex.align-center{
+.flex.align-center {
     align-items: center;
 }
 
@@ -39,22 +40,18 @@
 
 /* font awsome */
 
-.fa {
+.fa::before {
     font-family: fa;
 }
 
-.fa.fa-facebook::before {
-    content: "\f39e";
+.fa.date::before {
+    content: '\f073';
 }
 
-.fa.fa-twitter::before {
-    content: "\f099";
+.fa.lang::before {
+    content: '\f1ab';
 }
 
-.fa.fa-dribbble::before {
-    content: "\f17d";
-}
-
-.fa.fa-behance::before {
-    content: "\f1b4";
+.fa.page::before {
+    content: '\f15c';
 }

@@ -62,7 +62,7 @@ export function BookIndex (props) {
   if (!books) return 'loading...'
   return(
     <section>
-        <BookFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy}/>
+      {!selectedBookId && <BookFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy}/>}
         {selectedBookId
          ? <BookDetails 
          selectedBookId={selectedBookId} OnSetSelectedBookId={OnSetSelectedBookId} /> 
