@@ -59,7 +59,6 @@ function save(book) {
 
 
 function _createBooks() {
-    _creatDemoBooks()
     const books = storageService.loadFromStorage(BOOK_KEY)
     if (!books || !books.length) _creatDemoBooks()
 }
@@ -84,7 +83,8 @@ function _creatDemoBooks() {
             listPrice: {
                 amount: utilService.getRandomIntInclusive(80, 500),
                 currencyCode: "EUR",
-                isOnSale: Math.random() > 0.7
+                // isOnSale: Math.random() > 0.7
+                isOnSale: true
             }
         }
         books.push(book)

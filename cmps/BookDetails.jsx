@@ -10,26 +10,50 @@ export function BookDetails ({selectedBookId,OnSetSelectedBookId}) {
 
     useEffect(()=>{
         onGetBook(selectedBookId)
-    })
+    },[])
 
     function onGetBook(selectedBookId) {
         bookSerevice.get(selectedBookId)
         .then(book=>setBook(book))
     }
 
+    function onSetPageCountType(pageCount) {
+        if (pageCount > 500) return 'Serious Reading'
+        else if(pageCount > 200) return 'Descent Reading'
+        else return 'Light Reading'
+    }
+
+    function onSetPublishedDateType(publishedDate) {
+        const date = new Date()
+        const timePase = date.getFullYear() - publishedDate
+        if(timePase > 10) return 'Vintage'
+        else return 'New'
+    }
+
+    function setColorAmount(amount) {
+        if (amount > 150) return 'red'
+        else if(amount < 20) return 'green'
+        else return ''
+    }
+
     if (!book) return 'loading...'
 
     const {title,authors,description,thumbnail,publishedDate,pageCount,categories,language} = book
-    const {amount} = book.listPrice
+    const {amount,isOnSale} = book.listPrice
 
     return (
         <section className = 'book-details'>
             <div className='selected-book-content flex flex flex-column'>
             <h2><span>title: </span> {title}</h2>
             <h3><span>by:</span>{authors}</h3>
-            <h5 className='categories flex'><button>{categories}</button></h5>
+            <h5 className='categories flex'>
+                <button>{categories}</button>
+                <button>{onSetPageCountType(pageCount)}</button>
+                <button>{onSetPublishedDateType(publishedDate)}</button>
+                {isOnSale && <button>On Sale!</button> }
+            </h5>
             
-            <h2><span>price: </span> ${amount}</h2>
+            <h2><span>price: </span> <span className={setColorAmount(amount)}>${amount}</span></h2>
             <h2 className='description'><span>description: </span> {description}</h2>
 
             <div className="book-info flex space-around">

@@ -15,7 +15,7 @@ export function BookIndex (props) {
 
   const [filterBy, setFilterBy] = useState(bookSerevice.getFilterBy())
 
-  // console.log(books);
+  console.log(books);
   // console.log(selectedBookId);
   // console.log(filterBy);
   

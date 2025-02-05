@@ -27,9 +27,12 @@
     text-transform: capitalize;
 }
 
+.book-details>.selected-book-content>.categories {
+    gap: 0.5em;
+}
+
 .book-details>.selected-book-content>.categories>* {
     padding: 0.3em;
-    background-color: white;
     border-radius: 100vw;
 }
 
