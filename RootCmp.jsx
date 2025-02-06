@@ -6,7 +6,7 @@ const { useState, useEffect, useRef } = React
 
 export function App() {
     
-    const [page, setPage] = useState('Books')
+    const [page, setPage] = useState('About')
 
     function onSetPage(page) {
         setPage(page)
@@ -16,7 +16,7 @@ export function App() {
     return (
         <section className="app">
             <header className="app-header flex align-center justify-between">
-                <a href="#" onClick = {()=>(onSetPage('Home'))} > <h1>My App</h1></a>
+                <a href="#" onClick = {()=>(onSetPage('Home'))} > <h1>Miss Comics</h1></a>
 
                 <nav className='flex justify-between'>
                     <a href="#" onClick = {()=>(onSetPage('Home'))} >Home</a>

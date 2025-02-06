@@ -3,10 +3,10 @@
     padding: 0;
     border-radius: 20px;
 
-    background-color: rgba(128, 216, 253, 0.7);
-    backdrop-filter: blur(5px);
+    background: linear-gradient(to left top, rgba(255, 156, 107, 0.7), rgba(231, 246, 250, 0.7));
+    backdrop-filter: blur(6px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.3);
 }
 
 .add-edit-modal>form {
@@ -27,10 +27,21 @@
 
 .add-edit-modal>form>pre>h2 {
     align-self: center;
+    font-weight: bold;
 }
 
 .add-edit-modal>form>pre>input {
     padding: 0.5em;
+}
+
+.add-edit-modal>form>pre>button {
+    background-image: linear-gradient(to right bottom, rgb(255, 205, 40, 0.8), rgb(253, 112, 57, 0.8));
+    font-weight: bold;
+    transition: 200ms;
+
+    &:hover {
+        filter: hue-rotate(-20deg);
+    }
 }
 
 .add-edit-modal>form>pre>.close-btn {

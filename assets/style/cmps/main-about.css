@@ -1,0 +1,40 @@
+.main-about {
+    background-color: rgba(246, 107, 27, 0.3);
+    background-image: url(/assets/img/back2.png);
+    background-position-x: right;
+    background-position-y: bottom;
+    background-size: 40%;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    height: 80vh;
+    padding: 1em;
+    color: black;
+}
+
+.main-about>* {
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+@media (min-width: 800px) {
+    .main-about {
+        background-position-x: right;
+        background-position-y: bottom;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+
+    .main-about>* {
+        width: 50vw;
+    }
+}
+
+@media (min-width: 1150px) {
+    .main-about>* {
+        width: 70vw;
+    }
+}

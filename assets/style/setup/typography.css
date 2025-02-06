@@ -1,7 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 /* @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'); */
 
 @font-face {
     font-family: fa;
     src: url(/typography/fa-solid-900.ttf)
+}
+
+.bangers-regular {
+    font-family: "Bangers", serif;
+    font-weight: 400;
+    font-style: normal;
 }

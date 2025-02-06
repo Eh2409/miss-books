@@ -1,5 +1,6 @@
 .book-details {
-    background-image: linear-gradient(to left top, #deebff, #e0ffec);
+    background: linear-gradient(to left top, rgba(252, 226, 174, 0.7), rgba(231, 246, 250, 0.7));
+    backdrop-filter: blur(4px);
     border-radius: 10px;
     padding: 0.5em;
     box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.2);
@@ -39,7 +40,9 @@
 }
 
 .book-details>.selected-book-content span {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Comic Neue", serif;
+    font-weight: 700;
+    font-style: italic;
     text-transform: capitalize;
 }
 
@@ -60,7 +63,7 @@
 .book-details>.selected-book-content button {
     text-transform: capitalize;
 
-    background-image: linear-gradient(to left top, #b9d4ff, #a4e1ff, #9cecf9, #a6f4e9, #c0f9d6);
+    background-image: linear-gradient(to right bottom, rgb(255, 205, 40), rgb(253, 112, 57));
     font-weight: bold;
     transition: 200ms;
     font-size: 1.5em;
@@ -68,7 +71,7 @@
     margin: 0;
 
     &:hover {
-        filter: hue-rotate(150deg);
+        filter: hue-rotate(-30deg);
         color: white;
     }
 }
@@ -97,10 +100,6 @@
         grid-template-columns: 30vw 1fr;
         gap: 1em;
 
-        background-image: linear-gradient(to left top, #deebff, #e0ffec);
-        border-radius: 10px;
-        padding: 0.5em;
-        box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.2);
         margin-block-end: 1.5em;
         margin-inline: 1em;
         min-height: 80vh;
@@ -114,10 +113,7 @@
         grid-template-columns: 30vw 1fr;
         gap: 2em;
 
-        background-image: linear-gradient(to left top, #deebff, #e0ffec);
-        border-radius: 10px;
-        padding: 0.5em;
-        box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.2);
+
         margin-block-end: 2em;
         margin-inline: 4em;
         min-height: 80vh;

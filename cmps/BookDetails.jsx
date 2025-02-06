@@ -52,7 +52,7 @@ export function BookDetails ({selectedBookId,OnSetSelectedBookId}) {
 
             <div className='selected-book-content flex flex flex-column'>
             <h2><span>title: </span> {title}</h2>
-            <h3><span>by:</span>{authors.toString()}</h3>
+            <h3><span>by: </span>{authors.toString()}</h3>
             <h5 className='categories flex'>
                 {categories.map((category,idx)=><button key={idx}>{category}</button>)}
                 <button>{onSetPageCountType(pageCount)}</button>
