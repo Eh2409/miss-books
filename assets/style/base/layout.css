@@ -1,11 +1,33 @@
 .main-layout {
-    margin: 0 auto;
-    padding-left: 1.6rem;
-    padding-right: 1.6rem;
+    display: grid;
+    grid-template-columns: 5px minmax(auto, 1fr) 5px;
+}
+
+.main-layout>*:not(.full) {
+    grid-column: 2;
+}
+
+.main-layout>.full {
+    grid-column: 1 / -1;
 }
 
 .container {
     max-width: 800px;
     padding: 1em;
     margin: auto;
+}
+
+
+@media (min-width: 800px) {
+    .main-layout {
+        grid-template-columns: 20px minmax(auto, 1fr) 10px;
+    }
+
+}
+
+@media (min-width: 1150px) {
+    .main-layout {
+        grid-template-columns: 30px minmax(auto, 1fr) 30px;
+    }
+
 }

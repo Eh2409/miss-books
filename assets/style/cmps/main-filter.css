@@ -14,27 +14,24 @@
 
 .main-filter>form {
     display: grid;
-    grid-template-columns: max-content 1fr max-content 1fr;
+    grid-template-columns: max-content 1fr;
     gap: 0.5em;
-    width: 80%;
+    width: 100%;
 }
 
 .main-filter>h3 {
     margin-block-end: 1em;
 }
 
-.main-filter>form>input:nth-of-type(odd) {
+.main-filter>form>label {
+    grid-column: 1;
+}
+
+.main-filter>form>input {
     grid-column: 2;
     padding: 0.3em;
     padding-inline-start: 0.5em;
 }
-
-.main-filter>form>input:nth-of-type(even) {
-    grid-column: 4;
-    padding: 0.3em;
-    padding-inline-start: 0.5em;
-}
-
 
 
 .main-filter button {
@@ -48,5 +45,40 @@
 
     &:hover {
         filter: hue-rotate(80deg);
+    }
+}
+
+
+@media (min-width: 800px) {
+
+    .main-filter>form {
+        grid-template-columns: max-content 1fr max-content 1fr;
+        width: 90%;
+    }
+
+    .main-filter>form>input:nth-of-type(odd) {
+        grid-column: 2;
+    }
+
+    .main-filter>form>input:nth-of-type(even) {
+        grid-column: 4;
+    }
+
+    .main-filter>form>label:nth-of-type(odd) {
+        grid-column: 1;
+    }
+
+    .main-filter>form>label:nth-of-type(even) {
+        grid-column: 3;
+    }
+
+
+}
+
+@media (min-width: 1150px) {
+
+    .main-filter>form {
+        grid-template-columns: max-content 1fr max-content 1fr;
+        width: 80%;
     }
 }

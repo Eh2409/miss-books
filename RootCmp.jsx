@@ -15,7 +15,7 @@ export function App() {
 
     return (
         <section className="app">
-            <header className="app-header main-layout flex align-center justify-between">
+            <header className="app-header flex align-center justify-between">
                 <h1>My App</h1>
                 <nav className='flex justify-between'>
                     <a href="#" onClick = {()=>(onSetPage('Home'))} >Home</a>

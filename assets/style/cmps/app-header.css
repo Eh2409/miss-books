@@ -3,8 +3,21 @@
     color: var(--clr1bg);
     padding-block: 1em;
     margin-block-end: 1em;
+    padding-inline: 1em;
 }
 
 .app-header>nav {
     gap: 1em;
+}
+
+@media (min-width: 800px) {
+    .app-header {
+        padding-inline: 6em;
+    }
+}
+
+@media (min-width: 1150px) {
+    .app-header {
+        padding-inline: 8em;
+    }
 }

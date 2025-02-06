@@ -1,6 +1,6 @@
 .book-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 1em;
     margin-block-end: 1em;
 }
@@ -83,4 +83,19 @@
 
 .book-list>.book-preview .read-bth.less {
     color: rgb(117, 27, 195);
+
+}
+
+@media (min-width: 800px) {
+    .book-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (min-width: 1150px) {
+    .book-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
 }

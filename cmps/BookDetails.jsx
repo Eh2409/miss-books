@@ -43,6 +43,12 @@ export function BookDetails ({selectedBookId,OnSetSelectedBookId}) {
 
     return (
         <section className = 'book-details'>
+                
+            <div className='thumbnail-wrapper'>
+            <img src={`${thumbnail}`} alt={title} className='book-thumbnail'/>
+            {isOnSale && <span className='ribbon'>On Sale</span> }
+            </div>
+
             <div className='selected-book-content flex flex flex-column'>
             <h2><span>title: </span> {title}</h2>
             <h3><span>by:</span>{authors.toString()}</h3>
@@ -76,12 +82,6 @@ export function BookDetails ({selectedBookId,OnSetSelectedBookId}) {
 
             <button onClick={()=>(OnSetSelectedBookId(null))}>back</button>
             </div>
-            
-            <div className='thumbnail-wrapper'>
-            <img src={`${thumbnail}`} alt={title} className='book-thumbnail'/>
-            {isOnSale && <span className='ribbon'>On Sale</span> }
-            </div>
-
             
         </section>
     )
