@@ -83,8 +83,7 @@ function _creatDemoBooks() {
             listPrice: {
                 amount: utilService.getRandomIntInclusive(80, 500),
                 currencyCode: "EUR",
-                // isOnSale: Math.random() > 0.7
-                isOnSale: true
+                isOnSale: Math.random() > 0.5
             }
         }
         books.push(book)
