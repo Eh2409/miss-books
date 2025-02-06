@@ -3,6 +3,7 @@ import { BookDetails } from '../cmps/BookDetails.jsx';
 import { BookEdit } from '../cmps/BookEdit.jsx';
 import { BookFilter } from '../cmps/BookFilter.jsx';
 import { BookList } from '../cmps/BookList.jsx';
+import { Loader } from '../cmps/Loader.jsx';
 import { bookSerevice } from '../services/books.service.js'
 
 const { useState, useEffect, useRef } = React
@@ -60,16 +61,16 @@ export function BookIndex (props) {
     .finally(setEditBookId(null))
   }
 
-  if (!books) return 'loading...'
+  if (!books) return <Loader/>
   return(
     <section>
       {!selectedBookId && <BookFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy}/>}
-        {selectedBookId
-         ? <BookDetails 
-         selectedBookId={selectedBookId} OnSetSelectedBookId={OnSetSelectedBookId} /> 
-         : <BookList books={books} OnSetSelectedBookId={OnSetSelectedBookId}
-         onRemoveBook ={onRemoveBook} onEditBook={onEditBook}/>} 
-         {editBookId && <BookEdit onEditBook={onEditBook} editBookId={editBookId} onSetSevedBook={onSetSevedBook} />}
+      {selectedBookId ? 
+      (<BookDetails selectedBookId={selectedBookId}OnSetSelectedBookId={OnSetSelectedBookId}/> )
+      :(books.length > 0 ? (<BookList books={books} OnSetSelectedBookId={OnSetSelectedBookId} onRemoveBook ={onRemoveBook} onEditBook={onEditBook}/> )
+      :(<h2 className ='not-found flex justify-center align-center'>Sorry, the book you were looking for is not found.</h2>)
+      )} 
+      {editBookId && <BookEdit onEditBook={onEditBook} editBookId={editBookId} onSetSevedBook={onSetSevedBook} />}
     </section>
   )
 }

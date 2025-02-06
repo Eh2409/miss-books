@@ -1,4 +1,5 @@
 import { bookSerevice } from "../services/books.service.js";
+import { Loader } from "./Loader.jsx";
 const { useState, useEffect, useRef } = React
 
 export function BookEdit ({onEditBook,editBookId,onSetSevedBook}) {
@@ -7,6 +8,9 @@ export function BookEdit ({onEditBook,editBookId,onSetSevedBook}) {
     const [editBook, setEditBook] = useState(null)
 
     const modal = useRef(null) 
+    console.log(modal);
+    console.log(modal.current);
+    
     
 
     useEffect(()=>{
@@ -71,7 +75,8 @@ export function BookEdit ({onEditBook,editBookId,onSetSevedBook}) {
             onEditBook(null)
         }
     }
-
+    
+    
     return(
     <section>
         <dialog ref={modal} className = 'add-edit-modal' onClick={onClickOutsideModelCheck}>
@@ -102,6 +107,7 @@ export function BookEdit ({onEditBook,editBookId,onSetSevedBook}) {
                 </pre>}
             </form>
         </dialog>
+        {!editBook && <Loader/>}
     </section>
   )
 }

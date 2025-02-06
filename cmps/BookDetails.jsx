@@ -1,5 +1,6 @@
 
 import {bookSerevice} from "../services/books.service.js";
+import { Loader } from "./Loader.jsx";
 
 const { useState, useEffect, useRef } = React
 
@@ -36,7 +37,7 @@ export function BookDetails ({selectedBookId,OnSetSelectedBookId}) {
         else return ''
     }
 
-    if (!book) return 'loading...'
+    if (!book) return <Loader/>
 
     const {title,authors,description,thumbnail,publishedDate,pageCount,categories,language} = book
     const {amount,isOnSale} = book.listPrice
