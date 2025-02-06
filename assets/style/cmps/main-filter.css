@@ -14,21 +14,32 @@
 
 .main-filter>form {
     display: grid;
-    grid-template-columns: max-content 1fr;
-    gap: 1em;
-    width: 60vw;
+    grid-template-columns: max-content 1fr max-content 1fr;
+    gap: 0.5em;
+    width: 80%;
 }
 
-.main-filter>form>input {
+.main-filter>h3 {
+    margin-block-end: 1em;
+}
+
+.main-filter>form>input:nth-of-type(odd) {
     grid-column: 2;
     padding: 0.3em;
     padding-inline-start: 0.5em;
 }
 
+.main-filter>form>input:nth-of-type(even) {
+    grid-column: 4;
+    padding: 0.3em;
+    padding-inline-start: 0.5em;
+}
+
+
 
 .main-filter button {
     place-self: center;
-    grid-column: 2 span;
+    grid-column: 4 span;
     font-size: 1.2em;
     font-weight: bold;
     align-self: center;

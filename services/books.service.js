@@ -24,8 +24,31 @@ function query(filterBy) {
                 books = books.filter(book => book.title.includes(filterBy.title.toLowerCase()))
             }
 
+            if (filterBy.authors) {
+                books = books.filter(book => book.authors.toString().includes(filterBy.authors.toLowerCase()))
+            }
+
+            if (filterBy.categories) {
+                books = books.filter(book => {
+                    return book.categories.toString().toLowerCase().includes(filterBy.categories.toLowerCase())
+                })
+            }
+
+            if (filterBy.isOnSale) {
+                books = books.filter(book => book.listPrice.isOnSale === filterBy.isOnSale)
+            }
+
             if (filterBy.price) {
                 books = books.filter(book => book.listPrice.amount >= filterBy.price)
+            }
+
+            if (filterBy.pageCount) {
+                books = books.filter(book => book.pageCount >= filterBy.pageCount)
+            }
+
+            if (filterBy.publishedDate) {
+                console.log('Here:', filterBy.publishedDate)
+                books = books.filter(book => book.publishedDate === filterBy.publishedDate)
             }
 
             return books
@@ -33,7 +56,7 @@ function query(filterBy) {
 }
 
 function getFilterBy() {
-    return { title: '', price: '' }
+    return { title: '', price: '', authors: '', publishedDate: '', isOnSale: '', categories: '' }
 }
 
 function remove(bookId) {
