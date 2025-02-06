@@ -92,7 +92,7 @@ export function BookEdit ({onEditBook,editBookId,onSetSevedBook}) {
                     <label htmlFor="publishedDate">published Date:</label>
                     <input type="number" id='publishedDate' name='publishedDate' value={editBook.publishedDate || ''}  onChange={onSetEditBook}  required  />
                     <label htmlFor="pageCount">page Count:</label>
-                    <input type="number" id='pageCount' name='pageCount' value={editBook.publishedDate || ''}  onChange={onSetEditBook} required   />
+                    <input type="number" id='pageCount' name='pageCount' value={editBook.pageCount || ''}  onChange={onSetEditBook} required   />
                     <label htmlFor="isOnSale">On Sale:</label>
                     <input type="checkbox" id='isOnSale' name='listPrice.isOnSale' checked={editBook.listPrice.isOnSale} onChange={onSetEditBookNested} required  />
                 <button>save</button>
