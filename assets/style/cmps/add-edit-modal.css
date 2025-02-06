@@ -11,7 +11,8 @@
 
 .add-edit-modal>form {
     position: relative;
-    padding: 1em;
+    padding-block: 1em;
+    padding-inline: 3em;
     width: 50vw;
 }
 

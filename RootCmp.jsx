@@ -25,8 +25,8 @@ export function App() {
             </header>
             <main className="main-layout">
                 {page==='Home' && <Home />}
-                {page==='About' && <AboutUs />}
-                {page==='Books' && <BookIndex />}
+                {page==='About' && <AboutUs/>}
+                {page==='Books' && <BookIndex/>}
             </main>
         </section>
     )

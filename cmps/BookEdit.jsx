@@ -41,15 +41,19 @@ export function BookEdit ({onEditBook,editBookId,onSetSevedBook}) {
     function onSetEditBook(ev) {
         var {value,type,name} = ev.target
 
+        if (name === 'authors') value = value.split(',')
+        if (name === 'categories') value = value.split(',')
         if (type === 'number') value= +value
         setEditBook(prev => ({...prev,[name]:value}))
     }
 
     function onSetEditBookNested (ev) {
-        var {value,name,type} = ev.target
+        var {value,name,type,checked} = ev.target
         var keys = name.split('.')
         
         if (type === 'number') value= +value
+        if (type==='checkbox') value = checked
+
         setEditBook(prev => ({...prev,
             [keys[0]]:{
                 ...prev[keys[0]],
@@ -75,12 +79,22 @@ export function BookEdit ({onEditBook,editBookId,onSetSevedBook}) {
                 {editBook &&
                 <pre className='flex flex-column'>
                     <h2>Edit book</h2>
-                    <label htmlFor="title">title</label>
-                    <input type="text" id='title' name='title' value={editBook.title} onChange={onSetEditBook} />
-                    <label htmlFor="description">description</label>
-                    <input type="text" id='description' name='description' value={editBook.description} onChange={onSetEditBook} />
-                    <label htmlFor="price">price</label>
-                    <input type="number" id='price' name='listPrice.amount' value={editBook.listPrice.amount || ''} onChange={onSetEditBookNested} />
+                    <label htmlFor="title">title:</label>
+                    <input type="text" id='title' name='title' value={editBook.title} onChange={onSetEditBook} required  />
+                    <label htmlFor="authors">authors: {(`(Between each author name insert ',')`)}</label>
+                    <input type="authors" id='authors' name='authors' value={editBook.authors} onChange={onSetEditBook} required  />
+                    <label htmlFor="categories">categories: {(`(Between each category name insert ',')`)}</label>
+                    <input type="authors" id='categories' name='categories' value={editBook.categories} onChange={onSetEditBook} required />
+                    <label htmlFor="description">description:</label>
+                    <input type="text" id='description' name='description' value={editBook.description} onChange={onSetEditBook} required  />
+                    <label htmlFor="price">price:</label>
+                    <input type="number" id='price' name='listPrice.amount' value={editBook.listPrice.amount || ''} onChange={onSetEditBookNested}  required />
+                    <label htmlFor="publishedDate">published Date:</label>
+                    <input type="number" id='publishedDate' name='publishedDate' value={editBook.publishedDate || ''}  onChange={onSetEditBook}  required  />
+                    <label htmlFor="pageCount">page Count:</label>
+                    <input type="number" id='pageCount' name='pageCount' value={editBook.publishedDate || ''}  onChange={onSetEditBook} required   />
+                    <label htmlFor="isOnSale">On Sale:</label>
+                    <input type="checkbox" id='isOnSale' name='listPrice.isOnSale' checked={editBook.listPrice.isOnSale} onChange={onSetEditBookNested} required  />
                 <button>save</button>
                 <button type="button" className='close-btn' onClick={onCloseModalBtn}>X</button>
                 </pre>}
