@@ -70,7 +70,7 @@
     }
 }
 
-.book-list>.book-preview .read-more-bth {
+.book-list>.book-preview .read-bth {
     cursor: pointer;
     color: rgb(132, 132, 255);
     white-space: nowrap;
