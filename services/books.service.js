@@ -21,11 +21,11 @@ function query(filterBy) {
             }
 
             if (filterBy.title) {
-                books = books.filter(book => book.title.includes(filterBy.title.toLowerCase()))
+                books = books.filter(book => book.title.toLowerCase().includes(filterBy.title.toLowerCase()))
             }
 
             if (filterBy.authors) {
-                books = books.filter(book => book.authors.toString().includes(filterBy.authors.toLowerCase()))
+                books = books.filter(book => book.authors.toString().toLowerCase().includes(filterBy.authors.toLowerCase()))
             }
 
             if (filterBy.categories) {
@@ -93,7 +93,7 @@ function _creatDemoBooks() {
     for (let i = 0; i < 21; i++) {
         const book = {
             id: utilService.makeId(),
-            title: [titles[utilService.getRandomIntInclusive(0, titles.length - 1)]],
+            title: titles[utilService.getRandomIntInclusive(0, titles.length - 1)],
             subtitle: utilService.makeLorem(4),
             authors: [
                 utilService.makeLorem(1)
