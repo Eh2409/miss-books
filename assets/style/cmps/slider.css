@@ -1,0 +1,55 @@
+.slider {
+    position: relative;
+    width: 100vw;
+    height: 80vh;
+    overflow: hidden;
+}
+
+.slider .wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    width: 100vw;
+    height: 80vh;
+    scroll-behavior: smooth;
+    scroll-snap-align: center;
+    overflow: hidden;
+}
+
+.slider .wrapper img {
+    flex: 1 0 100vw;
+
+    width: 100vw;
+    height: 80vh;
+    object-fit: cover;
+}
+
+
+.slider>.btns {
+    position: absolute;
+    bottom: 1em;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+
+
+.slider>.btns>.dot {
+    background-color: var(--clr1bg);
+    border: solid 3px red;
+    height: 2em;
+    width: 2em;
+    border-radius: 50%;
+
+    &:hover {
+        background-color: white;
+    }
+}
+
+.slider>.btns>.dot.active {
+    background-color: white;
+}
