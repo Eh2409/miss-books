@@ -9,7 +9,7 @@ export function BookList ({books,OnSetSelectedBookId,onRemoveBook,onEditBook}) {
         <ul className='book-list clean-list'>
           {books.map(book=>{
             return <li key={book.id} className='book-preview'>
-              <BookPreview book={book}/>
+              <BookPreview book={book} OnSetSelectedBookId={OnSetSelectedBookId}/>
               <div className='book-btns flex'>
                 <button onClick={()=>(OnSetSelectedBookId(book.id))}>book details</button>
                 <button onClick={()=>(onRemoveBook(book.id))}>remove</button>

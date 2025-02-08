@@ -3,9 +3,9 @@ import { utilService } from "../services/util.service.js";
 
 const { useState, useEffect, useRef } = React
 
-export function BookPreview ({book}) {
+export function BookPreview ({book,OnSetSelectedBookId}) {
 
-  const {title,description,thumbnail} = book
+  const {id,title,description,thumbnail} = book
   const {amount,currencyCode,isOnSale} = book.listPrice
 
   return(
@@ -18,7 +18,7 @@ export function BookPreview ({book}) {
       <LongTxt description={description} length={100}/>
     </h4>
     </section>
-    <div className='thumbnail-wrapper'>
+    <div className='thumbnail-wrapper' onClick ={()=>{OnSetSelectedBookId(id)}}>
             <img src={`${thumbnail}`} alt={title} className='book-thumbnail'/>
             {isOnSale && <span className='ribbon'>On Sale</span> }
     </div>
