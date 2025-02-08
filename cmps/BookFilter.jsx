@@ -40,7 +40,7 @@ export function BookFilter ({filterBy,onSetFilterBy}) {
             <input type="search" name='categories' id='categories' onChange={onSetEditFilterBy} placeholder='Enter book category name'/>
             <label htmlFor="isOnSale">on sale:</label>
             <input type="checkbox" name='isOnSale' id='isOnSale' onChange={onSetEditFilterBy}/>
-            <button>Search</button>
+            {/* <button>Search</button> */}
             </form>
         </section>
     )
