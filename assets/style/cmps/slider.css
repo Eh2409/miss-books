@@ -24,6 +24,18 @@
     object-fit: cover;
 }
 
+
+.slider>.btns {
+    position: absolute;
+    bottom: 1em;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+
+
 .slider>.btns>.dot {
     background-color: var(--clr1bg);
     border: solid 3px red;
