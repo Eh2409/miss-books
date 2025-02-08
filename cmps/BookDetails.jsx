@@ -1,6 +1,7 @@
 
 import {bookSerevice} from "../services/books.service.js";
 import { Loader } from "./Loader.jsx";
+import { utilService } from "../services/util.service.js";
 
 const { useState, useEffect, useRef } = React
 
@@ -37,11 +38,21 @@ export function BookDetails ({selectedBookId,OnSetSelectedBookId}) {
         else return ''
     }
 
+    function setLanguage(language) {
+        switch (language) {
+            case 'en': return 'English'
+            case 'he': return 'Hebrew'
+            case 'es': return 'Spanish'
+            case 'ru': return 'Russian'
+            case 'ar': return 'Arabic'
+            case 'ja': return 'Japanese'
+            case 'zh': return 'Chinese'
+        }
+    }
+
     if (!book) return <Loader/>
-
     const {title,authors,description,thumbnail,publishedDate,pageCount,categories,language} = book
-    const {amount,isOnSale} = book.listPrice
-
+    const {amount,currencyCode,isOnSale} = book.listPrice
     return (
         <section className = 'book-details'>
                 
@@ -53,7 +64,8 @@ export function BookDetails ({selectedBookId,OnSetSelectedBookId}) {
             <div className='selected-book-content flex flex flex-column'>
             <div className='book-title'><span className='tag'>title: </span> {title}</div>
             <div><span className='tag'>by: </span>{authors.toString()}</div>
-            <div><span className='tag'>price: </span> <span className={setColorAmount(amount)}>${amount}</span></div>
+            <div><span className='tag'>price: </span> <span className={setColorAmount(amount)}>
+            {utilService.setCurrency(currencyCode)}{amount}</span></div>
             <div><span className='tag'>categories: </span>
                 {categories.map((category,idx)=><span key={idx}>{category}</span>)}
             </div>
@@ -75,7 +87,7 @@ export function BookDetails ({selectedBookId,OnSetSelectedBookId}) {
                 <div className = 'book-data flex flex-column align-center'>
                     <span className='tag'>language</span>
                     <span className='fa lang'></span>
-                    <span>{language}</span>
+                    <span>{setLanguage(language)}</span>
                 </div> 
             </div>
 
