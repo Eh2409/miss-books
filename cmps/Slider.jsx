@@ -62,7 +62,7 @@ function onSlide(activeImgRef) {
 
   return(
     <div className='slider'>
-        <div ref={wrapperRef} className="wrapper">
+        <div ref={wrapperRef} className="wrapper flex">
             {[1, 2, 3, 4].map((num, idx) => (
                 <img 
           key={num} 

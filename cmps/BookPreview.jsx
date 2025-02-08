@@ -9,13 +9,13 @@ export function BookPreview ({book}) {
 
   return(
     <React.Fragment>  
-  <section className='book-content flex flex-column space-around'>
+  <section className='book-content'>
     <h3><span>title: </span> {title}</h3>
+    <h4><span>price: </span> ${amount}</h4>
     <h4>
       <span>description: </span>
       <LongTxt description={description} length={100}/>
     </h4>
-    <h4><span>price: </span> ${amount}</h4>
     </section>
     <div className='thumbnail-wrapper'>
             <img src={`${thumbnail}`} alt={title} className='book-thumbnail'/>

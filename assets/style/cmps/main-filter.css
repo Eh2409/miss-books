@@ -1,6 +1,11 @@
 .main-filter {
     justify-items: center;
-    background: linear-gradient(to left, rgba(251, 240, 205, 0.7), rgba(255, 204, 219, 0.7));
+    background: linear-gradient(to left, rgba(251, 240, 205, 0.7), rgba(255, 204, 219, 0.7)),
+        url(/assets/img/back3.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-x: right;
+
     backdrop-filter: blur(5px);
     margin-block-end: 1em;
     padding: 1em;
@@ -22,7 +27,7 @@
 
 .main-filter>h3 {
     margin-block-end: 1em;
-    font-size: 2em;
+    font-size: 1.3em;
     font-weight: bold;
 }
 
@@ -36,10 +41,14 @@
     padding-inline-start: 0.5em;
 }
 
+.main-filter>form>#isOnSale {
+    justify-self: start;
+}
+
 
 .main-filter button {
     place-self: center;
-    grid-column: 4 span;
+    grid-column: 2 span;
     font-size: 1.2em;
     font-weight: bold;
     align-self: center;
@@ -53,9 +62,18 @@
 
 
 @media (min-width: 800px) {
+    .main-filter {
+        justify-items: center;
+        background: url(/assets/img/back3.png),
+            linear-gradient(to left, rgba(251, 240, 205, 0.7), rgba(255, 204, 219, 0.7));
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position-x: right;
+    }
+
 
     .main-filter>form {
-        grid-template-columns: max-content 1fr max-content 1fr;
+        grid-template-columns: max-content 1fr 2em max-content 1fr;
         width: 90%;
     }
 
@@ -64,7 +82,7 @@
     }
 
     .main-filter>form>input:nth-of-type(even) {
-        grid-column: 4;
+        grid-column: 5;
     }
 
     .main-filter>form>label:nth-of-type(odd) {
@@ -72,16 +90,18 @@
     }
 
     .main-filter>form>label:nth-of-type(even) {
-        grid-column: 3;
+        grid-column: 4;
     }
 
+    .main-filter button {
+        grid-column: 5 span;
 
+    }
 }
 
 @media (min-width: 1150px) {
 
     .main-filter>form {
-        grid-template-columns: max-content 1fr max-content 1fr;
         width: 80%;
     }
 }

@@ -19,22 +19,49 @@
     font-weight: bold;
 }
 
+.main-about>h2 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
 @media (min-width: 800px) {
     .main-about {
+        background: url(/assets/img/back2.png),
+            linear-gradient(to left, rgba(246, 27, 27, 0.3), rgba(246, 107, 27, 0.3));
+
         background-position-x: right;
         background-position-y: bottom;
         background-size: contain;
         background-repeat: no-repeat;
     }
 
-
     .main-about>* {
         width: 50vw;
     }
+
+    .main-about>h2 {
+        font-size: 1.5em;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .main-about>p {
+        font-size: 1.2em;
+    }
+
 }
 
 @media (min-width: 1150px) {
     .main-about>* {
         width: 70vw;
     }
+
+    .main-about>h2 {
+        font-size: 2em;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .main-about>p {
+        font-size: 1.5em;
+    }
+
 }

@@ -18,6 +18,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    margin-block-end: 1em;
 }
 
 .book-details>.thumbnail-wrapper>.ribbon {
@@ -37,9 +38,11 @@
 
 .book-details>.selected-book-content {
     grid-area: 1/2;
+    gap: 1em;
+    font-size: 1.2em;
 }
 
-.book-details>.selected-book-content span {
+.book-details>.selected-book-content .tag {
     font-family: "Comic Neue", serif;
     font-weight: 700;
     font-style: italic;
@@ -56,8 +59,8 @@
     border-radius: 100vw;
 }
 
-.book-details>.selected-book-content>.description {
-    height: 100%;
+.book-details>.selected-book-content>.book-title {
+    font-size: 1.5em;
 }
 
 .book-details>.selected-book-content button {
@@ -66,8 +69,8 @@
     background-image: linear-gradient(to right bottom, rgb(255, 205, 40), rgb(253, 112, 57));
     font-weight: bold;
     transition: 200ms;
-    font-size: 1.5em;
     align-self: end;
+    font-size: 1.5em;
     margin: 0;
 
     &:hover {
@@ -77,22 +80,17 @@
 }
 
 .selected-book-content>.book-info {
-    margin-block-end: 2em;
+    height: 100%;
+    font-size: 0.8em;
 }
 
 .selected-book-content>.book-info>.book-data {
     gap: 1em;
 }
 
-.selected-book-content>.book-info>.book-data>:nth-child(2) {
-    font-size: 1.3em;
-}
-
 .selected-book-content>.book-info>.book-data>:nth-child(3) {
-    font-size: 1.3em;
     font-weight: bold;
 }
-
 
 @media (min-width: 800px) {
     .book-details {
@@ -103,6 +101,10 @@
         margin-block-end: 1.5em;
         margin-inline: 1em;
         min-height: 80vh;
+    }
+
+    .book-details>.thumbnail-wrapper>.book-thumbnail {
+        margin-block-end: 0;
     }
 
 }
@@ -117,6 +119,10 @@
         margin-block-end: 2em;
         margin-inline: 4em;
         min-height: 80vh;
+    }
+
+    .selected-book-content>.book-info {
+        font-size: 1em;
     }
 
 }

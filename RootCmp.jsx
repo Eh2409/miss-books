@@ -6,7 +6,7 @@ const { useState, useEffect, useRef } = React
 
 export function App() {
     
-    const [page, setPage] = useState('Home')
+    const [page, setPage] = useState('Books')
 
     function onSetPage(page) {
         setPage(page)

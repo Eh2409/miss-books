@@ -51,31 +51,29 @@ export function BookDetails ({selectedBookId,OnSetSelectedBookId}) {
             </div>
 
             <div className='selected-book-content flex flex flex-column'>
-            <h2><span>title: </span> {title}</h2>
-            <h3><span>by: </span>{authors.toString()}</h3>
-            <h5 className='categories flex'>
-                {categories.map((category,idx)=><button key={idx}>{category}</button>)}
-                <button>{onSetPageCountType(pageCount)}</button>
-                <button>{onSetPublishedDateType(publishedDate)}</button>
-                {isOnSale && <button>On Sale!</button> }
-            </h5>
-            
-            <h2><span>price: </span> <span className={setColorAmount(amount)}>${amount}</span></h2>
-            <h2 className='description'><span>description: </span> {description}</h2>
+            <div className='book-title'><span className='tag'>title: </span> {title}</div>
+            <div><span className='tag'>by: </span>{authors.toString()}</div>
+            <div><span className='tag'>price: </span> <span className={setColorAmount(amount)}>${amount}</span></div>
+            <div><span className='tag'>categories: </span>
+                {categories.map((category,idx)=><span key={idx}>{category}</span>)}
+            </div>
+            <div className='description'><span className='tag'>description: </span> {description}</div>
 
-            <div className="book-info flex space-around">
+            <div className="book-info flex space-around align-center">
                 <div className = 'book-data flex flex-column align-center'>
-                    <span>page Count</span>
+                    <span className='tag'>page Count</span>
                     <span className='fa page'></span>
                     <span>{pageCount} pages</span>
+                    <span>{onSetPageCountType(pageCount)}</span>
                 </div>
                 <div className = 'book-data flex flex-column align-center'>
-                    <span>published Date</span>
+                    <span className='tag'>published Date</span>
                     <span className='fa date'></span>
                     <span>{publishedDate}</span>
+                    <span>{onSetPublishedDateType(publishedDate)}</span>
                 </div>
                 <div className = 'book-data flex flex-column align-center'>
-                    <span>language</span>
+                    <span className='tag'>language</span>
                     <span className='fa lang'></span>
                     <span>{language}</span>
                 </div> 
