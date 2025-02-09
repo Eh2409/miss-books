@@ -64,7 +64,7 @@
 @media (min-width: 800px) {
     .main-filter {
         justify-items: center;
-        background: url(/assets/img/back3.png),
+        background: url(../../img/back3.png),
             linear-gradient(to left, rgba(251, 240, 205, 0.7), rgba(255, 204, 219, 0.7));
         background-repeat: no-repeat;
         background-size: contain;
