@@ -60,6 +60,10 @@
     content: '\f15c';
 }
 
+.fa.html::before {
+    content: '\f13b';
+}
+
 /* colors */
 
 .red {
