@@ -10,13 +10,13 @@ export function BookPreview ({book,OnSetSelectedBookId}) {
 
   return(
     <React.Fragment>  
-  <section className='book-content'>
-    <h3><span>title: </span> {title}</h3>
-    <h4><span>price: </span> {utilService.setCurrency(currencyCode)}{amount}</h4>
-    <h4>
+  <section className='book-content flex flex-column'>
+    <div className='book-title'><span>title: </span> {title}</div>
+    <div><span>price: </span> {utilService.setCurrency(currencyCode)}{amount}</div>
+    <div>
       <span>description: </span>
       <LongTxt description={description} length={100}/>
-    </h4>
+    </div>
     </section>
     <div className='thumbnail-wrapper' onClick ={()=>{OnSetSelectedBookId(id)}}>
             <img src={`${thumbnail}`} alt={title} className='book-thumbnail'/>

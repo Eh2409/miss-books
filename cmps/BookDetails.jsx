@@ -71,7 +71,7 @@ export function BookDetails ({selectedBookId,OnSetSelectedBookId}) {
             </div>
             <div className='description'><span className='tag'>description: </span> {description}</div>
 
-            <div className="book-info flex space-around align-center">
+            <div className="book-info flex space-around">
                 <div className = 'book-data flex flex-column align-center'>
                     <span className='tag'>page Count</span>
                     <span className='fa page'></span>

@@ -19,7 +19,9 @@
     height: 100%;
     object-fit: cover;
     margin-block-end: 1em;
+    transition: 200ms;
 }
+
 
 .book-details>.thumbnail-wrapper>.ribbon {
     position: absolute;
@@ -80,12 +82,18 @@
 }
 
 .selected-book-content>.book-info {
-    height: 100%;
+    margin: auto 0;
     font-size: 0.8em;
+    background-image: linear-gradient(to right, transparent 0%, #fbeded6c 7%, #fbeded6c 93%, transparent 100%);
 }
 
 .selected-book-content>.book-info>.book-data {
     gap: 1em;
+    flex: 1;
+}
+
+.selected-book-content>.book-info>.book-data:not(:nth-child(3)) {
+    box-shadow: 2px 0px 0px rgb(116, 1, 1, 0.2);
 }
 
 .selected-book-content>.book-info>.book-data>:nth-child(3) {
