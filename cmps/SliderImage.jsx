@@ -67,7 +67,7 @@ function onSlide(activeImgRef) {
                 <img 
           key={num} 
           ref={(el) => (imagesRef.current[idx] = el)}
-          src={`/assets/img/${num}.jpg`}
+          src={`../../assets/img/${num}.jpg`}
           />
         ))} 
         </div>
