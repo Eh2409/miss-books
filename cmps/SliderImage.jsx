@@ -1,6 +1,6 @@
 const { useState, useEffect, useRef } = React
 
-export function Slider (props) {
+export function SliderImage (props) {
 
     const [activeImg, setActiveImg] = useState(0)
     
