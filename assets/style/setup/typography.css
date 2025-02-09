@@ -5,7 +5,7 @@
 
 @font-face {
     font-family: fa;
-    src: url(/./typography/fa-solid-900.ttf)
+    src: url('../../../typography/fa-solid-900.ttf')
 }
 
 .bangers-regular {
