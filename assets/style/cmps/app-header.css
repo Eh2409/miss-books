@@ -8,8 +8,8 @@
     padding-inline: 1em;
 }
 
-.app-header>a>h1 {
-    font-family: inherit;
+.app-header>.main-logo>a {
+    font-family: "Bangers", serif;
     font-weight: 400;
     font-size: 1.5em;
     transition: 300ms;
@@ -19,6 +19,7 @@
         color: white;
     }
 }
+
 
 .app-header>nav {
     gap: 2em;
@@ -33,6 +34,12 @@
         color: white;
     }
 }
+
+.app-header>nav>a.active {
+    color: white;
+}
+
+
 
 @media (min-width: 800px) {
     .app-header {

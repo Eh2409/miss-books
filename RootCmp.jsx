@@ -2,6 +2,9 @@ import { AboutUs } from "./pages/AboutUs.jsx"
 import { BookIndex } from "./pages/BookIndex.jsx"
 import { Home } from "./pages/Home.jsx"
 
+const Router =  ReactRouterDOM.HashRouter
+const {Routes, Route } = ReactRouterDOM
+const {Link , NavLink} = ReactRouterDOM
 const { useState, useEffect, useRef } = React
 
 export function App() {
@@ -14,21 +17,24 @@ export function App() {
 
 
     return (
+        <Router>
         <section className="app">
             <header className="app-header flex align-center justify-between">
-                <a href="#" onClick = {()=>(onSetPage('Home'))} > <h1>Miss Comics</h1></a>
-
+                <h1 className='main-logo'> <NavLink to='/'> Miss Comics</NavLink></h1>
                 <nav className='flex justify-between'>
-                    <a href="#" onClick = {()=>(onSetPage('Home'))} >Home</a>
-                    <a href="#" onClick = {()=>(onSetPage('About'))} >About</a>
-                    <a href="#" onClick = {()=>(onSetPage('Books'))}>Books</a>
+                <NavLink to='/'> Home</NavLink>
+                <NavLink to='/about'>About</NavLink>
+                <NavLink to='/books'>Books</NavLink>
                 </nav>
             </header>
             <main className="main-layout">
-                {page==='Home' && <Home />}
-                {page==='About' && <AboutUs/>}
-                {page==='Books' && <BookIndex/>}
+                <Routes>
+                    <Route path='/' element = {<Home />}/>
+                    <Route path='/about' element = {<AboutUs />}/>
+                    <Route path='/books' element = {<BookIndex />}/>
+                </Routes>
             </main>
         </section>
+        </Router>
     )
 }
