@@ -29,6 +29,7 @@ h6 {
 
 p {
   margin: 0 0 1em;
+  text-wrap: pretty;
 }
 
 a {
@@ -53,4 +54,5 @@ object {
 
 .input {
   width: 100%;
+  padding: 1em;
 }
