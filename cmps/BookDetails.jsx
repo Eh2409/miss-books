@@ -10,13 +10,13 @@ const {useParams,Link} = ReactRouterDOM
 export function BookDetails () {
 
     const [book, setBook] = useState(null)
-    console.log(book);
+    // console.log(book);
 
     const params = useParams()
 
     useEffect(()=>{
         onGetBook(params.bookId)
-    },[])
+    },[params.bookId])
 
     function onGetBook(bookId) {
         bookSerevice.get(bookId)
@@ -55,7 +55,7 @@ export function BookDetails () {
     }
 
     if (!book) return <Loader/>
-    const {title,authors,description,thumbnail,publishedDate,pageCount,categories,language} = book
+    const {title,authors,description,thumbnail,publishedDate,pageCount,categories,language ,nextBook,prevBook} = book
     const {amount,currencyCode,isOnSale} = book.listPrice
     return (
         <section className = 'book-details'>
@@ -65,7 +65,7 @@ export function BookDetails () {
             {isOnSale && <span className='ribbon'>On Sale</span> }
             </div>
 
-            <div className='selected-book-content flex flex flex-column'>
+            <div className='selected-book-content flex flex-column'>
             <div className='book-title'><span className='tag'>title: </span> {title}</div>
             <div><span className='tag'>by: </span>{authors.toString()}</div>
             <div><span className='tag'>price: </span> <span className={setColorAmount(amount)}>
@@ -95,9 +95,12 @@ export function BookDetails () {
                 </div> 
             </div>
 
-            
-            <button><Link to='/books'>back</Link></button>
-            
+            <div className='flex justify-center justify-between'>
+            <button><Link to={`/books/${prevBook}`}>prev book</Link></button>
+            <button><Link to='/books'>back to books</Link></button>
+            <button><Link to={`/books/${nextBook}`}>next book</Link></button>
+            </div>
+
             </div>
             
         </section>
