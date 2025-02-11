@@ -1,26 +1,13 @@
 const { useState, useEffect, useRef } = React
 
 export function LongTxt ({description,length = 100}) {
-  
-    const [text, setText] = useState(description)
-    const [readMore, setReadMore] = useState(false)
 
-    useEffect(()=>{
-        setText(splitText(description) )
-    },[readMore,description])
+    const [isReadMore, setIsReadMore] = useState(false)
 
-
-    function splitText(text) {
-        if (text.length > length && !readMore) {  
-            var text = text.slice(0,length) + '...'
-            return  text
-        } else{
-            return text + ' '
-        }
-    }
+    const text = isReadMore ? description + ' ' : description.substring(1, length) + '... '
 
     function onsetReadMore() {
-        setReadMore(prev => prev = !readMore)
+        setIsReadMore(prev => prev = !isReadMore)
     }
 
     if (!text) return ''
@@ -28,8 +15,8 @@ export function LongTxt ({description,length = 100}) {
         <section >
             {text}
             {text.length >= length && 
-            <span className = {`read-bth ${readMore ? 'less' : 'more'}`} href="#" onClick={onsetReadMore}>
-                {readMore ? 'read less' : 'read more'}
+            <span className = {`read-bth ${isReadMore ? 'less' : 'more'}`} href="#" onClick={onsetReadMore}>
+                {isReadMore ? 'read less' : 'read more'}
             </span>}
         </section>
     )
