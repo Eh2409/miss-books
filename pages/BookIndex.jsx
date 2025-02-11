@@ -1,5 +1,5 @@
 
-import { BookDetails } from '../cmps/BookDetails.jsx';
+// import { BookDetails } from '../cmps/BookDetails.jsx';
 import { BookEdit } from '../cmps/BookEdit.jsx';
 import { BookFilter } from '../cmps/BookFilter.jsx';
 import { BookList } from '../cmps/BookList.jsx';
@@ -11,7 +11,7 @@ const { useState, useEffect, useRef } = React
 export function BookIndex (props) {
 
   const [books, setBooks] = useState(null)
-  const [selectedBookId, setSelectedBookId] = useState(null)
+  // const [selectedBookId, setSelectedBookId] = useState(null)
   const [editBookId, setEditBookId] = useState(null)
 
   const [filterBy, setFilterBy] = useState(bookSerevice.getFilterBy())
@@ -26,9 +26,9 @@ export function BookIndex (props) {
   },[filterBy])
 
 
-  function OnSetSelectedBookId(bookId) {
-    setSelectedBookId(bookId)
-  }
+  // function OnSetSelectedBookId(bookId) {
+  //   setSelectedBookId(bookId)
+  // }
 
   function onSetFilterBy(updateFilterBy) {
     setFilterBy({...updateFilterBy})
@@ -64,13 +64,15 @@ export function BookIndex (props) {
   if (!books) return <Loader/>
   return(
     <section>
-      {!selectedBookId && <BookFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy}/>}
-      {selectedBookId ? 
+      <BookFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy}/>
+      {books.length > 0 ? <BookList books={books} onRemoveBook ={onRemoveBook} onEditBook={onEditBook}/> 
+      : <h2 className ='book-not-found flex justify-center align-center'>Sorry, the book you were looking for is not found.</h2>}
+      {editBookId && <BookEdit onEditBook={onEditBook} editBookId={editBookId} onSetSevedBook={onSetSevedBook} />}
+          {/* {selectedBookId ? 
       (<BookDetails selectedBookId={selectedBookId}OnSetSelectedBookId={OnSetSelectedBookId}/> )
       :(books.length > 0 ? (<BookList books={books} OnSetSelectedBookId={OnSetSelectedBookId} onRemoveBook ={onRemoveBook} onEditBook={onEditBook}/> )
       :(<h2 className ='book-not-found flex justify-center align-center'>Sorry, the book you were looking for is not found.</h2>)
-      )} 
-      {editBookId && <BookEdit onEditBook={onEditBook} editBookId={editBookId} onSetSevedBook={onSetSevedBook} />}
+      )}  */}
     </section>
   )
 }

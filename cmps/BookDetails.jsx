@@ -5,17 +5,21 @@ import { utilService } from "../services/util.service.js";
 
 const { useState, useEffect, useRef } = React
 
-export function BookDetails ({selectedBookId,OnSetSelectedBookId}) {
+const {useParams,Link} = ReactRouterDOM
+
+export function BookDetails () {
 
     const [book, setBook] = useState(null)
     console.log(book);
 
+    const params = useParams()
+
     useEffect(()=>{
-        onGetBook(selectedBookId)
+        onGetBook(params.bookId)
     },[])
 
-    function onGetBook(selectedBookId) {
-        bookSerevice.get(selectedBookId)
+    function onGetBook(bookId) {
+        bookSerevice.get(bookId)
         .then(book=>setBook(book))
     }
 
@@ -91,7 +95,9 @@ export function BookDetails ({selectedBookId,OnSetSelectedBookId}) {
                 </div> 
             </div>
 
-            <button onClick={()=>(OnSetSelectedBookId(null))}>back</button>
+            
+            <button><Link to='/books'>back</Link></button>
+            
             </div>
             
         </section>

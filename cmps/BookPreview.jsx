@@ -2,11 +2,18 @@ import { LongTxt } from "./LongTxt.jsx"
 import { utilService } from "../services/util.service.js";
 
 const { useState, useEffect, useRef } = React
+const {Link , NavLink , useNavigate} = ReactRouterDOM
 
-export function BookPreview ({book,OnSetSelectedBookId}) {
+export function BookPreview ({book}) {
+  
+  const navigate = useNavigate()
 
   const {id,title,description,thumbnail} = book
   const {amount,currencyCode,isOnSale} = book.listPrice
+
+  function onThumbnail() {
+    navigate(`/books/${id}`)
+  }
 
   return(
     <React.Fragment>  
@@ -18,7 +25,8 @@ export function BookPreview ({book,OnSetSelectedBookId}) {
       <LongTxt description={description} length={100}/>
     </div>
     </section>
-    <div className='thumbnail-wrapper' onClick ={()=>{OnSetSelectedBookId(id)}}>
+
+    <div className='thumbnail-wrapper' onClick={onThumbnail}>
             <img src={`${thumbnail}`} alt={title} className='book-thumbnail'/>
             {isOnSale && <span className='ribbon'>On Sale</span> }
     </div>
