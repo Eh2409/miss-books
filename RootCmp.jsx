@@ -1,5 +1,6 @@
 import { About } from "./cmps/About.jsx"
 import { AppHeader } from "./cmps/AppHeader.jsx"
+import { BookAdd } from "./cmps/BookAdd.jsx"
 import { BookDetails } from "./cmps/BookDetails.jsx"
 import { ContactUs } from "./cmps/ContactUs.jsx"
 import { Newsletter } from "./cmps/NewsLetter.jsx"
@@ -39,6 +40,7 @@ export function App() {
 
                     <Route path='/books' element = {<BookIndex />}/>
                     <Route path='/books/:bookId' element = {<BookDetails/>}/>
+                    <Route path='/book-add' element = {<BookAdd/>}/>
 
                 </Routes>
             </main>

@@ -8,6 +8,9 @@ export const bookSerevice = {
     get,
     save,
     getFilterBy,
+    isBookInData,
+    getEmptyBook,
+    addGoogleBook,
 }
 
 const BOOK_KEY = 'book_key'
@@ -78,8 +81,40 @@ function save(book) {
 
 }
 
-// function getEmptyBook() {
-// }
+function isBookInData(bookTitle) {
+    return asyncStorageService.query(BOOK_KEY)
+        .then(books => {
+            const res = books.some(book => book.title.toLowerCase() === bookTitle.toLowerCase())
+            return res
+        })
+}
+
+function addGoogleBook(book) {
+    return asyncStorageService.post(BOOK_KEY, book)
+}
+
+function getEmptyBook() {
+    const ctgs = ['Classic Superheroes', 'Teen Superheroes', 'Dark and Gritty', 'Anti-Heroes', 'Superhero Teams', 'Cosmic Superheroes', 'Mythological Superheroes', 'Magic-Based Superheroes', 'Cyberpunk Superheroes', 'Villain-Turned-Hero']
+    return {
+        title: '',
+        subtitle: utilService.makeLorem(4),
+        authors: [
+            utilService.makeLorem(1)
+        ],
+        publishedDate: utilService.getRandomIntInclusive(1950, 2024),
+        description: utilService.makeLorem(20),
+        pageCount: utilService.getRandomIntInclusive(20, 600),
+        categories: [ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)]],
+        thumbnail: `assets/img/ComicsCovers/22.jpg`,
+        language: 'en',
+        listPrice: {
+            amount: utilService.getRandomIntInclusive(80, 500),
+            currencyCode: 'EUR',
+            isOnSale: Math.random() > 0.5
+        }
+    }
+}
+
 
 function _setNextPrevBookId(book) {
     return asyncStorageService.query(BOOK_KEY).then(books => {
