@@ -7,6 +7,7 @@ import { Loader } from '../cmps/Loader.jsx';
 import { bookSerevice } from '../services/books.service.js'
 
 const { useState, useEffect, useRef } = React
+const { Link} = ReactRouterDOM
 
 export function BookIndex (props) {
 
@@ -64,6 +65,7 @@ export function BookIndex (props) {
   if (!books) return <Loader/>
   return(
     <section>
+      <button><Link to='/books/book-add'>Add Book</Link></button>
       <BookFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy}/>
       {books.length > 0 ? <BookList books={books} onRemoveBook ={onRemoveBook} onEditBook={onEditBook}/> 
       : <h2 className ='book-not-found flex justify-center align-center'>Sorry, the book you were looking for is not found.</h2>}
@@ -73,6 +75,7 @@ export function BookIndex (props) {
       :(books.length > 0 ? (<BookList books={books} OnSetSelectedBookId={OnSetSelectedBookId} onRemoveBook ={onRemoveBook} onEditBook={onEditBook}/> )
       :(<h2 className ='book-not-found flex justify-center align-center'>Sorry, the book you were looking for is not found.</h2>)
       )}  */}
+
     </section>
   )
 }

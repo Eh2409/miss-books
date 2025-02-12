@@ -1,4 +1,79 @@
 .book-add {
-    background-color: aquamarine;
-    max-width: 50vw;
+    position: relative;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+
+    background: linear-gradient(to left top, rgba(255, 107, 107, 0.7), rgba(250, 233, 179, 0.7));
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+
+    width: 100%;
+    justify-self: center;
+}
+
+.book-add>h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    justify-self: center;
+}
+
+.book-add>.go-back-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.book-add>.searching {
+    padding: 1em;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 8px solid;
+    border-color: #766DF4 #0000;
+    animation: s1 1s infinite;
+}
+
+@keyframes s1 {
+    to {
+        transform: rotate(.5turn)
+    }
+}
+
+
+.book-add>.no-res {
+    padding: 1em;
+    font-size: 1.5em;
+}
+
+.book-add>ul {
+    font-size: 1.2em;
+    padding: 0;
+}
+
+.book-add>ul>li {
+    margin: 0;
+}
+
+.book-add>ul>li:nth-child(odd) {
+    background: linear-gradient(to left top, rgba(224, 202, 53, 0.3), rgba(231, 246, 250, 0.3));
+
+}
+
+.book-add>ul>li:nth-child(even) {
+    background: linear-gradient(to left top, rgba(214, 123, 25, 0.3), rgba(231, 246, 250, 0.3));
+
+}
+
+
+@media (min-width: 800px) {
+    .book-add {
+        width: 90vw;
+    }
+}
+
+@media (min-width: 1150px) {
+    .book-add {
+        width: 80vw;
+    }
 }

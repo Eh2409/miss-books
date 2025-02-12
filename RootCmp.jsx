@@ -13,12 +13,6 @@ const {Routes, Route } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
 
 export function App() {
-    
-    const [page, setPage] = useState('Home')
-
-    function onSetPage(page) {
-        setPage(page)
-    }
 
 
     return (
@@ -40,7 +34,7 @@ export function App() {
 
                     <Route path='/books' element = {<BookIndex />}/>
                     <Route path='/books/:bookId' element = {<BookDetails/>}/>
-                    <Route path='/book-add' element = {<BookAdd/>}/>
+                    <Route path='/books/book-add' element = {<BookAdd/>}/>
 
                 </Routes>
             </main>
