@@ -10,6 +10,20 @@ export function BookAdd (props) {
     console.log(booksRes)
     console.log(isLoad)
 
+    const searchRef = useRef()
+    
+
+    useEffect(()=>{
+        const onInputTypeDebouce = debouce(onSearchBook, 500)
+        searchRef.current.addEventListener('input', onInputTypeDebouce)
+        
+        return(()=>{
+        if (searchRef.current) {
+            searchRef.current.removeEventListener('input', onInputTypeDebouce);
+        }
+        })
+    })
+
     function onAddBook(book) {
         return bookSerevice.isBookInData(book)
         .then(res=> {
@@ -23,22 +37,42 @@ export function BookAdd (props) {
     }
 
     function onSearchBook(ev) {
-        ev.preventDefault()
         setIsLoad(true)
-        const txt = ev.target[0].value
+        
+        const txt = ev.target.value
+        console.log(txt);
+        
+        if (txt.length > 0){
+            getSearchRes(txt)
+        } else{
+            setIsLoad(false)
+        }    
+    }
+
+    function getSearchRes(txt){
         googleBookService.query(txt)
         .then(books => setBooksRes(books))
         .then(setIsLoad(false))
     }
-  
+
+    function debouce(func, wait) {
+        let timeout
+        return (...args) => {
+            clearTimeout(timeout)
+            timeout = setTimeout(() => {
+                clearTimeout(timeout)
+                func(...args)
+            }, wait)
+        }
+    }
+
     return (
         <section className='book-add'>
             <h2>Add Book</h2>
             <button className='go-back-btn'><Link to='/books'>back to books</Link></button>
-            <form onSubmit={onSearchBook} className='flex justify-center'>
-                <input type="search"  placeholder='Search book'/>
-                <button>search</button>
-            </form>
+        
+            <input type="text" ref={searchRef} placeholder='Search book' className='search-book flex'/>
+
             {isLoad && <div className='searching flex justify-center' ></div> }
             
             {booksRes &&

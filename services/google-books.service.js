@@ -60,11 +60,11 @@ function setBookData(books) {
         emptyBook.title = (title) ? title : ''
         emptyBook.subtitle = (subtitle) ? subtitle : ''
         emptyBook.authors = (authors) ? authors : []
-        emptyBook.publishedDate = _getPublishedYear(publishedDate)
+        emptyBook.publishedDate = (publishedDate) ? _getPublishedYear(publishedDate) : '0'
         emptyBook.description = (description) ? description : ''
         emptyBook.pageCount = (pageCount) ? pageCount : 0
         emptyBook.categories = (categories) ? categories : []
-        emptyBook.thumbnail = (imageLinks) ? imageLinks.thumbnail : 'assets/img/ComicsCovers/1.jpg'
+        emptyBook.thumbnail = (imageLinks) ? imageLinks.thumbnail : 'assets/img/ComicsCovers/not-found.jpg'
         emptyBook.language = language
         if (saleability === "FOR_SALE") {
             emptyBook.listPrice.amount = listPrice.amount

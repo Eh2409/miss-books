@@ -24,6 +24,13 @@
     left: 0;
 }
 
+.book-add>.search-book {
+    justify-self: center;
+    width: 80%;
+    padding: 0.5em;
+    border-radius: 100vh;
+}
+
 .book-add>.searching {
     padding: 1em;
     width: 50px;
@@ -32,6 +39,7 @@
     border: 8px solid;
     border-color: #766DF4 #0000;
     animation: s1 1s infinite;
+    place-self: center;
 }
 
 @keyframes s1 {
@@ -70,10 +78,18 @@
     .book-add {
         width: 90vw;
     }
+
+    .book-add>.search-book {
+        width: 60%;
+    }
 }
 
 @media (min-width: 1150px) {
     .book-add {
         width: 80vw;
+    }
+
+    .book-add>.search-book {
+        width: 50%;
     }
 }
