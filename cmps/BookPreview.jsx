@@ -1,4 +1,3 @@
-import { LongTxt } from "./LongTxt.jsx"
 import { utilService } from "../services/util.service.js";
 
 const { useState, useEffect, useRef } = React
@@ -8,7 +7,7 @@ export function BookPreview ({book}) {
   
   const navigate = useNavigate()
 
-  const {id,title,description,thumbnail} = book
+  const {id,title,authors,thumbnail} = book
   const {amount,currencyCode,isOnSale} = book.listPrice
 
   function onThumbnail() {
@@ -19,11 +18,8 @@ export function BookPreview ({book}) {
     <React.Fragment>  
   <section className='book-content flex flex-column'>
     <div className='book-title'><span>title: </span> {title}</div>
+    <div><span className='tag'>by: </span>{authors.map((author,idx)=> (<span key={idx}>{author}, </span>))}</div>
     <div><span>price: </span> {utilService.setCurrency(currencyCode)}{amount}</div>
-    <div>
-      <span>description: </span>
-      <LongTxt description={description} length={100}/>
-    </div>
     </section>
 
     <div className='thumbnail-wrapper' onClick={onThumbnail}>

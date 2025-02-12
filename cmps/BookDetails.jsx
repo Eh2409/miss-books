@@ -2,6 +2,7 @@
 import {bookSerevice} from "../services/books.service.js";
 import { Loader } from "./Loader.jsx";
 import { utilService } from "../services/util.service.js";
+import { LongTxt } from "./LongTxt.jsx"
 
 const { useState, useEffect, useRef } = React
 
@@ -67,13 +68,14 @@ export function BookDetails () {
 
             <div className='selected-book-content flex flex-column'>
             <div className='book-title'><span className='tag'>title: </span> {title}</div>
-            <div><span className='tag'>by: </span>{authors.toString()}</div>
+            <div><span className='tag'>by: </span>{authors.map((author,idx)=> (<span key={idx}>{author}, </span>))}</div>
             <div><span className='tag'>price: </span> <span className={setColorAmount(amount)}>
             {utilService.setCurrency(currencyCode)}{amount}</span></div>
             <div><span className='tag'>categories: </span>
                 {categories.map((category,idx)=><span key={idx}>{category}</span>)}
             </div>
-            <div className='description'><span className='tag'>description: </span> {description}</div>
+            <div className='description'><span className='tag'>description: </span> 
+            <LongTxt description={description} length={100}/></div>
 
             <div className="book-info flex space-around">
                 <div className = 'book-data flex flex-column align-center'>
