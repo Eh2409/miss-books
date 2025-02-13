@@ -1,4 +1,6 @@
 .add-review {
+    position: relative;
+
     display: grid;
     grid-template-columns: max-content 1fr;
     gap: 1em;
@@ -11,15 +13,80 @@
     margin-block-end: 1em;
 }
 
-
-.add-review>.avatar {
+.add-review>.avatar-container>.avatar {
     width: 80px;
     height: 80px;
     border-radius: 50%;
     aspect-ratio: 1/1;
     outline: solid 2px white;
-    background-color: #ff9d00;
+    background-color: var(--avatarColor);
+    cursor: pointer;
+    transition: 200ms;
+
+    &:hover {
+        filter: brightness(1.2);
+    }
 }
+
+.add-review>.avatar-container>.avatar-color {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    width: 70px;
+    height: 70px;
+    border: none;
+    cursor: pointer;
+}
+
+.add-review>.avatar-container>.avatar-color::-webkit-color-swatch {
+    border-radius: 50%;
+}
+
+
+.add-review>.avatar-container::-webkit-scrollbar {
+    display: none;
+}
+
+.add-review>.avatar-container>.avatar-picker {
+    position: absolute;
+    top: -120px;
+    left: 0;
+    right: 0;
+
+    gap: 1em;
+    padding: 0.5em;
+
+    background: linear-gradient(to left top, rgba(252, 209, 174, 0.9), rgba(14, 168, 210, 0.9));
+    backdrop-filter: blur(2px);
+
+    border-radius: 10px;
+
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(252, 209, 174, 0.9) rgba(14, 168, 210, 0.9);
+
+    opacity: 0;
+    pointer-events: none;
+    transition: 200ms;
+}
+
+
+
+.add-review>.avatar-container>.avatar.active+.avatar-picker {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.avatar-picker>.avatar-img {
+    width: 100px;
+    aspect-ratio: 1/1;
+    outline: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 
 .add-review>form {
     gap: 0.2em;

@@ -1,13 +1,18 @@
+import { AvatarPicker } from "./AvatarPicker.jsx";
+
 const { useState, useEffect, useRef } = React
 
 export function AddReview ({onAddReview}) {
 
+
+    const [avatar, setAvatar] = useState('assets/img/avatar/1.png')
+    const [colorAvatar, setColorAvatar] = useState("#e66465")
+    const [isPickerOn, setIsPickerOn] = useState(false)
     const [review, setReview] = useState(
-        {avatar:'assets/img/back4.png',fullname:'',readAt:'',rating: 0,comment:''}
+        {avatar:avatar,color:'', fullname:'',readAt:'',rating: 0,comment:''}
     )
 
     const commentFormRef = useRef()
-
     console.log(review);
     
 
@@ -24,14 +29,31 @@ export function AddReview ({onAddReview}) {
         ev.preventDefault()
         commentFormRef.current.reset()
         onAddReview(review)
-        setReview(prev=> ({...prev ,fullname:'',readAt:'',rating: 0,comment:''}))
+        setReview(prev=> ({...prev ,color:'',fullname:'',readAt:'',rating: 0,comment:''}))
       }
     
-  
+      function onSetAvatar(ev) {
+        var {name,src} = ev.target
+        setAvatar(src)
+        setIsPickerOn(prev => prev = !isPickerOn)
+        setReview(prev => ({...prev,[name]:src}))
+      }
+
+      function setAvatarBackground(ev) {
+        const color = ev.target.value
+        setColorAvatar(color)
+        setReview(prev=> ({...prev ,color:color}))
+      }
+
     return(
         <section className='add-review'>
-         
-                <img src="assets/img/back4.png" alt="" className='avatar' />
+            
+            <div className="avatar-container flex flex-column align-center ">
+                <img src={avatar} alt="" className={`avatar  ${isPickerOn ? 'active' : ''}`}
+                 onClick={()=>(setIsPickerOn(prev => prev = !isPickerOn))}  style={{ '--avatarColor': `${colorAvatar}` }}/>
+                  <AvatarPicker onSetAvatar={onSetAvatar}/>
+                 <input type="color" className='avatar-color' value={colorAvatar} onChange={setAvatarBackground} />
+            </div>
 
                 <form onSubmit={onSubmit} ref={commentFormRef}>
                 <label htmlFor="fullname" className="full-name flex align-center">
