@@ -3,6 +3,8 @@ import {bookSerevice} from "../services/books.service.js";
 import { Loader } from "./Loader.jsx";
 import { utilService } from "../services/util.service.js";
 import { LongTxt } from "./LongTxt.jsx"
+import { AddReview } from "./AddReview.jsx";
+import { UserReview } from "./UserReview.jsx";
 
 const { useState, useEffect, useRef } = React
 
@@ -11,13 +13,21 @@ const {useParams,Link} = ReactRouterDOM
 export function BookDetails () {
 
     const [book, setBook] = useState(null)
-    // console.log(book);
+    console.log(book);
 
     const params = useParams()
 
     useEffect(()=>{
         onGetBook(params.bookId)
     },[params.bookId])
+
+
+    // useEffect(() => {
+    //     if (book.reviews) {
+    //         updateRating(book);
+    //     }
+    // }, [book,book.reviews])
+
 
     function onGetBook(bookId) {
         bookSerevice.get(bookId)
@@ -55,10 +65,39 @@ export function BookDetails () {
         }
     }
 
+    function onAddReview(review) {
+        bookSerevice.addReview(params.bookId,review)
+        .then(res=> {
+            book.reviews.push(review)
+            const currReviews = book.reviews
+            setBook(prev=>({...prev,reviews:currReviews}))
+            updateRating(book)
+        })
+    }
+
+    function onRemoveReview(reviewId) {
+        bookSerevice.removeReview(params.bookId,reviewId)
+        .then(res=>{
+            book.reviews = book.reviews.filter(review => review.id !== reviewId)
+            setBook(prev=>({...prev,reviews: book.reviews}))
+            updateRating(book)
+        })
+    }
+
+    function updateRating(book) {
+        var currRating = 0
+        if (book.reviews.length > 0) {
+            currRating = Math.floor(book.reviews.reduce((acc, review) => review.rating + acc, 0) / book.reviews.length)
+        }
+        setBook(prev => ({...prev,rating: currRating}))
+    }
+
+
     if (!book) return <Loader/>
-    const {title,authors,description,thumbnail,publishedDate,pageCount,categories,language ,nextBook,prevBook} = book
+    const {title, rating ,authors,description,thumbnail,publishedDate,pageCount,categories,language ,nextBook,prevBook,reviews} = book
     const {amount,currencyCode,isOnSale} = book.listPrice
     return (
+        <React.Fragment> 
         <section className = 'book-details'>
                 
             <div className='thumbnail-wrapper'>
@@ -68,6 +107,7 @@ export function BookDetails () {
 
             <div className='selected-book-content flex flex-column'>
             <div className='book-title'><span className='tag'>title: </span> {title}</div>
+            <div><span className='tag'>rating: </span> {(`⭐`).repeat(rating)}</div>
             <div><span className='tag'>by: </span>{authors.map((author,idx)=> (<span key={idx}>{author}, </span>))}</div>
             <div><span className='tag'>price: </span> <span className={setColorAmount(amount)}>
             {utilService.setCurrency(currencyCode)}{amount}</span></div>
@@ -106,5 +146,10 @@ export function BookDetails () {
             </div>
             
         </section>
+
+       <UserReview reviews={reviews} onRemoveReview = {onRemoveReview}/>
+
+        <AddReview onAddReview={onAddReview}/>
+        </React.Fragment> 
     )
 }

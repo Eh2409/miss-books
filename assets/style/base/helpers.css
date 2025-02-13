@@ -64,6 +64,10 @@
     content: '\f13b';
 }
 
+.fa.star::before {
+    content: '\f005';
+}
+
 /* colors */
 
 .red {

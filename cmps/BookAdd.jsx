@@ -14,7 +14,7 @@ export function BookAdd (props) {
     
 
     useEffect(()=>{
-        const onInputTypeDebouce = debouce(onSearchBook, 500)
+        const onInputTypeDebouce = debouce(onSearchBook, 1000)
         searchRef.current.addEventListener('input', onInputTypeDebouce)
         
         return(()=>{
@@ -71,7 +71,7 @@ export function BookAdd (props) {
             <h2>Add Book</h2>
             <button className='go-back-btn'><Link to='/books'>back to books</Link></button>
         
-            <input type="text" ref={searchRef} placeholder='Search book' className='search-book flex'/>
+            <input type="text" ref={searchRef} placeholder='Search book' className='search-book'/>
 
             {isLoad && <div className='searching flex justify-center' ></div> }
             

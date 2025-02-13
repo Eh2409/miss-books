@@ -7,7 +7,7 @@ export function BookPreview ({book}) {
   
   const navigate = useNavigate()
 
-  const {id,title,authors,thumbnail} = book
+  const {id,title,rating,authors,thumbnail} = book
   const {amount,currencyCode,isOnSale} = book.listPrice
 
   function onThumbnail() {
@@ -18,6 +18,7 @@ export function BookPreview ({book}) {
     <React.Fragment>  
   <section className='book-content flex flex-column'>
     <div className='book-title'><span>title: </span> {title}</div>
+    <div><span className='tag'>rating: </span> {(`⭐`).repeat(rating)}</div>
     <div><span className='tag'>by: </span>{authors.map((author,idx)=> (<span key={idx}>{author}, </span>))}</div>
     <div><span>price: </span> {utilService.setCurrency(currencyCode)}{amount}</div>
     </section>

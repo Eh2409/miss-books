@@ -99,6 +99,7 @@
     font-weight: bold;
 }
 
+
 @media (min-width: 800px) {
     .book-details {
         display: grid;
@@ -115,7 +116,7 @@
     }
 
     .book-details>.selected-book-content button {
-        font-size: 1.4em;
+        font-size: 1em;
     }
 }
 
@@ -133,6 +134,11 @@
 
     .selected-book-content>.book-info {
         font-size: 1em;
+    }
+
+
+    .book-details>.selected-book-content button {
+        font-size: 1.2em;
     }
 
 }
