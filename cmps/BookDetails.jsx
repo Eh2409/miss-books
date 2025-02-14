@@ -5,6 +5,7 @@ import { utilService } from "../services/util.service.js";
 import { LongTxt } from "./LongTxt.jsx"
 import { AddReview } from "./AddReview.jsx";
 import { UserReview } from "./UserReview.jsx";
+import { reviewsService } from "../services/reviews.service.js";
 
 const { useState, useEffect, useRef } = React
 
@@ -20,13 +21,6 @@ export function BookDetails () {
     useEffect(()=>{
         onGetBook(params.bookId)
     },[params.bookId])
-
-
-    // useEffect(() => {
-    //     if (book.reviews) {
-    //         updateRating(book);
-    //     }
-    // }, [book,book.reviews])
 
 
     function onGetBook(bookId) {
@@ -66,7 +60,7 @@ export function BookDetails () {
     }
 
     function onAddReview(review) {
-        bookSerevice.addReview(params.bookId,review)
+        reviewsService.addReview(params.bookId,review)
         .then(res=> {
             book.reviews.push(review)
             const currReviews = book.reviews
@@ -76,7 +70,7 @@ export function BookDetails () {
     }
 
     function onRemoveReview(reviewId) {
-        bookSerevice.removeReview(params.bookId,reviewId)
+        reviewsService.removeReview(params.bookId,reviewId)
         .then(res=>{
             book.reviews = book.reviews.filter(review => review.id !== reviewId)
             setBook(prev=>({...prev,reviews: book.reviews}))

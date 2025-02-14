@@ -11,8 +11,6 @@ export const bookSerevice = {
     isBookInData,
     getEmptyBook,
     addGoogleBook,
-    addReview,
-    removeReview,
 }
 
 const BOOK_KEY = 'book_key'
@@ -139,36 +137,6 @@ function _createBooks() {
 function _creatDemoBooks() {
     const books = _demoData()
     storageService.saveToStorage(BOOK_KEY, books)
-}
-
-function addReview(bookId, review) {
-    return get(bookId)
-        .then(book => {
-            review.id = utilService.makeId()
-            book.reviews.push(review)
-            book.rating = updateRating(book)
-            save(book)
-        })
-        .catch(error => console.error(error))
-}
-
-function removeReview(bookId, reviewId) {
-    return get(bookId)
-        .then(book => {
-            const updateBooke = {
-                ...book,
-                reviews: book.reviews.filter(review => review.id !== reviewId)
-            }
-            updateBooke.rating = updateRating(updateBooke)
-            save(updateBooke)
-        })
-        .catch(error => console.error(error))
-}
-
-function updateRating(book) {
-    if (book.reviews.length === 0) return 0
-    const rating = Math.floor(book.reviews.reduce((acc, review) => review.rating + acc, 0) / book.reviews.length)
-    return rating
 }
 
 

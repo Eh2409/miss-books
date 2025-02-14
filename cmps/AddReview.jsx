@@ -1,4 +1,5 @@
 import { AvatarPicker } from "./AvatarPicker.jsx";
+import { reviewsService } from "../services/reviews.service.js";
 
 const { useState, useEffect, useRef } = React
 
@@ -6,30 +7,31 @@ export function AddReview ({onAddReview}) {
 
 
     const [avatar, setAvatar] = useState('assets/img/avatar/1.png')
-    const [colorAvatar, setColorAvatar] = useState("#e66465")
+    const [backgroundColorAvatar, setBackgroundColorAvatar] = useState("#e66465")
     const [isPickerOn, setIsPickerOn] = useState(false)
-    const [review, setReview] = useState(
-        {avatar:avatar,color:'', fullname:'',readAt:'',rating: 0,comment:''}
-    )
+    const [review, setReview] = useState({...reviewsService.getEmptyReview(), avatar:avatar,color:backgroundColorAvatar})
 
     const commentFormRef = useRef()
     console.log(review);
     
 
     function onInpitReview(ev) {
-        var {value,type,name,checked } = ev.target
-        
+        var {value,type,name,checked,} = ev.target
+
         if (type==='number') value = +value
         if (name==='rating') value = +value
         if (type==='checkbox') value = checked
+
         setReview(prev => ({...prev,[name]:value}))
       }
     
       function onSubmit(ev) {
         ev.preventDefault()
-        commentFormRef.current.reset()
+        console.log(new Date(review.readAt).getTime());
+        review.readAt = new Date(review.readAt).getTime()
         onAddReview(review)
-        setReview(prev=> ({...prev ,color:'',fullname:'',readAt:'',rating: 0,comment:''}))
+        setReview(prev=> ({...prev ,fullname:'',readAt:'',rating: 0,comment:''}))
+        commentFormRef.current.reset()
       }
     
       function onSetAvatar(ev) {
@@ -41,7 +43,7 @@ export function AddReview ({onAddReview}) {
 
       function setAvatarBackground(ev) {
         const color = ev.target.value
-        setColorAvatar(color)
+        setBackgroundColorAvatar(color)
         setReview(prev=> ({...prev ,color:color}))
       }
 
@@ -50,9 +52,9 @@ export function AddReview ({onAddReview}) {
             
             <div className="avatar-container flex flex-column align-center ">
                 <img src={avatar} alt="" className={`avatar  ${isPickerOn ? 'active' : ''}`}
-                 onClick={()=>(setIsPickerOn(prev => prev = !isPickerOn))}  style={{ '--avatarColor': `${colorAvatar}` }}/>
+                 onClick={()=>(setIsPickerOn(prev => prev = !isPickerOn))}  style={{ '--avatarColor': `${backgroundColorAvatar}` }}/>
                   <AvatarPicker onSetAvatar={onSetAvatar}/>
-                 <input type="color" className='avatar-color' value={colorAvatar} onChange={setAvatarBackground} />
+                 <input type="color" className='avatar-color' value={backgroundColorAvatar} onChange={setAvatarBackground} />
             </div>
 
                 <form onSubmit={onSubmit} ref={commentFormRef}>
@@ -63,7 +65,7 @@ export function AddReview ({onAddReview}) {
 
                 <label htmlFor="readAt" className="read-at flex align-center">
                     <span>Read at: </span>
-                <input type="date" id='readAt' name='readAt' onChange={onInpitReview} required />
+                <input type="date" id='readAt' name='readAt' value={review.readAt} onChange={onInpitReview} required />
                 </label>
 
                 <label className="rating flex align-center"> 
