@@ -9,6 +9,10 @@ export function BookFilter ({filterBy,onSetFilterBy}) {
 
   // debounce
   // const filterDebounce = useRef(utilService.debounce(onSetFilterBy, 1000))
+  console.log(editFilterBy)
+
+  const formRef = useRef()
+  const defaultFilterRef= useRef({...filterBy})
 
   useEffect(()=>{
     // filterDebounce.current(editFilterBy)
@@ -24,17 +28,25 @@ export function BookFilter ({filterBy,onSetFilterBy}) {
     setEditFilterBy(prev => ({...prev,[name]:value}))
   }
 
-  function onSubmit(ev) {
-    ev.preventDefault()
-    onSetFilterBy(editFilterBy)
+  // function onSubmit(ev) {
+  //   ev.preventDefault()
+  //   onSetFilterBy(editFilterBy)
+  // }
+
+  function onReset() {
+    formRef.current.reset()
+    setminRating(0)
+    setEditFilterBy(defaultFilterRef.current)
   }
+
+  const {title} = editFilterBy
 
     return(
         <section className='main-filter'>
           <h3>filter books</h3>
-            <form className='flex flex-column' onSubmit ={onSubmit}>
+            <form className='flex flex-column' ref={formRef}>
             <label htmlFor="title">title:</label>
-            <input type="search" name='title' id='title'  onChange={onSetEditFilterBy}  placeholder='Enter book title'/>
+            <input type="search" name='title' id='title' onChange={onSetEditFilterBy}  placeholder='Enter book title'/>
             <label htmlFor="price">min price:</label>
             <input type="number" name='price' id='price' onChange={onSetEditFilterBy}  placeholder='Enter book pirce number'/>
             <label htmlFor="pageCount">min page Count:</label>
@@ -50,6 +62,7 @@ export function BookFilter ({filterBy,onSetFilterBy}) {
             <label htmlFor="rating">min rating{` (${minRating}) `}:</label>
             <input type="range" min="0" max="5" step="1" value={minRating} name='rating' id='rating' onChange={onSetEditFilterBy} placeholder='Enter book publish year' />
             {/* <button>Search</button> */}
+            <button type='button' onClick={onReset}>reset</button>
             </form>
         </section>
     )

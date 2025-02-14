@@ -12,12 +12,11 @@ export function BookIndex (props) {
 
   const [books, setBooks] = useState(null)
   const [editBookId, setEditBookId] = useState(null)
+  const [filterBy, setFilterBy] = useState({...bookSerevice.getDefaultFilterBy()})
 
-  const [filterBy, setFilterBy] = useState(bookSerevice.getDefaultFilterBy())
-
-  console.log(books);
+  // console.log(books);
   // console.log(selectedBookId);
-  // console.log(filterBy);
+  console.log(filterBy);
   
 
   useEffect(()=>{
