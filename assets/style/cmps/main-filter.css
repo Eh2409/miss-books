@@ -45,6 +45,10 @@
     justify-self: start;
 }
 
+.main-filter>form>#rating {
+    accent-color: rgb(230, 79, 79);
+}
+
 
 .main-filter button {
     place-self: center;

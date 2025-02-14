@@ -1,5 +1,4 @@
 
-// import { BookDetails } from '../cmps/BookDetails.jsx';
 import { BookEdit } from '../cmps/BookEdit.jsx';
 import { BookFilter } from '../cmps/BookFilter.jsx';
 import { BookList } from '../cmps/BookList.jsx';
@@ -12,10 +11,9 @@ const { Link} = ReactRouterDOM
 export function BookIndex (props) {
 
   const [books, setBooks] = useState(null)
-  // const [selectedBookId, setSelectedBookId] = useState(null)
   const [editBookId, setEditBookId] = useState(null)
 
-  const [filterBy, setFilterBy] = useState(bookSerevice.getFilterBy())
+  const [filterBy, setFilterBy] = useState(bookSerevice.getDefaultFilterBy())
 
   console.log(books);
   // console.log(selectedBookId);
@@ -26,10 +24,6 @@ export function BookIndex (props) {
       laodBooks()
   },[filterBy])
 
-
-  // function OnSetSelectedBookId(bookId) {
-  //   setSelectedBookId(bookId)
-  // }
 
   function onSetFilterBy(updateFilterBy) {
     setFilterBy({...updateFilterBy})
@@ -70,12 +64,6 @@ export function BookIndex (props) {
       {books.length > 0 ? <BookList books={books} onRemoveBook ={onRemoveBook} onEditBook={onEditBook}/> 
       : <h2 className ='book-not-found flex justify-center align-center'>Sorry, the book you were looking for is not found.</h2>}
       {editBookId && <BookEdit onEditBook={onEditBook} editBookId={editBookId} onSetSevedBook={onSetSevedBook} />}
-          {/* {selectedBookId ? 
-      (<BookDetails selectedBookId={selectedBookId}OnSetSelectedBookId={OnSetSelectedBookId}/> )
-      :(books.length > 0 ? (<BookList books={books} OnSetSelectedBookId={OnSetSelectedBookId} onRemoveBook ={onRemoveBook} onEditBook={onEditBook}/> )
-      :(<h2 className ='book-not-found flex justify-center align-center'>Sorry, the book you were looking for is not found.</h2>)
-      )}  */}
-
     </section>
   )
 }

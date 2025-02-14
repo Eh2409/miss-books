@@ -4,6 +4,7 @@ const { useState, useEffect, useRef } = React
 export function BookFilter ({filterBy,onSetFilterBy}) {
 
   const [editFilterBy, setEditFilterBy] = useState({...filterBy})
+  const [minRating, setminRating] = useState(0)
 
   useEffect(()=>{
     onSetFilterBy(editFilterBy)
@@ -11,7 +12,8 @@ export function BookFilter ({filterBy,onSetFilterBy}) {
   
   function onSetEditFilterBy(ev) {
     var {value,type,name,checked } = ev.target
-    
+
+    if (name === 'rating') setminRating(value)
     if (type==='number') value = +value
     if (type==='checkbox') value = checked
     setEditFilterBy(prev => ({...prev,[name]:value}))
@@ -40,6 +42,8 @@ export function BookFilter ({filterBy,onSetFilterBy}) {
             <input type="search" name='categories' id='categories' onChange={onSetEditFilterBy} placeholder='Enter book category name'/>
             <label htmlFor="isOnSale">on sale:</label>
             <input type="checkbox" name='isOnSale' id='isOnSale' onChange={onSetEditFilterBy}/>
+            <label htmlFor="rating">min rating{` (${minRating}) `}:</label>
+            <input type="range" min="0" max="5" step="1" value={minRating} name='rating' id='rating' onChange={onSetEditFilterBy} placeholder='Enter book publish year' />
             {/* <button>Search</button> */}
             </form>
         </section>

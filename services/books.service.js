@@ -7,7 +7,7 @@ export const bookSerevice = {
     remove,
     get,
     save,
-    getFilterBy,
+    getDefaultFilterBy,
     isBookInData,
     getEmptyBook,
     addGoogleBook,
@@ -49,8 +49,11 @@ function query(filterBy) {
                 books = books.filter(book => book.pageCount >= filterBy.pageCount)
             }
 
+            if (filterBy.rating) {
+                books = books.filter(book => book.rating >= filterBy.rating)
+            }
+
             if (filterBy.publishedDate) {
-                console.log('Here:', filterBy.publishedDate)
                 books = books.filter(book => book.publishedDate === filterBy.publishedDate)
             }
 
@@ -58,8 +61,8 @@ function query(filterBy) {
         })
 }
 
-function getFilterBy() {
-    return { title: '', price: '', authors: '', publishedDate: '', isOnSale: '', categories: '' }
+function getDefaultFilterBy() {
+    return { title: '', price: '', authors: '', publishedDate: '', isOnSale: '', categories: '', rating: '' }
 }
 
 function remove(bookId) {
