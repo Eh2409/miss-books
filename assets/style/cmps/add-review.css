@@ -110,6 +110,8 @@
 .add-review>form>.comment-box {
     width: 100%;
     resize: none;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0.5em;
 }
 
 .add-review>form>.full-name {

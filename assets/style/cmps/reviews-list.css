@@ -1,3 +1,18 @@
+.reviews-list>h2 {
+    background: linear-gradient(to left top, rgba(252, 226, 174, 0.7), rgba(231, 246, 250, 0.7));
+    backdrop-filter: blur(4px);
+    text-align: center;
+    border-radius: 10px;
+    padding: 0.5em;
+    box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.2);
+    align-self: center;
+    margin-block-start: 0;
+}
+
+.reviews-list>ul {
+    padding: 0;
+}
+
 .user-review {
     position: relative;
 
@@ -40,9 +55,17 @@
     border-radius: 20px;
     padding: 0.5em;
     font-family: Arial, Helvetica, sans-serif;
+
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 @media (min-width: 800px) {
+    .reviews-list>h2 {
+        margin-inline: 0.7em;
+    }
+
     .user-review>.review-content {
         padding: 0.5em;
     }
@@ -72,6 +95,10 @@
 }
 
 @media (min-width: 1150px) {
+    .reviews-list>h2 {
+        margin-inline: 2.7em;
+    }
+
     .user-review {
         margin-inline: 6em;
     }

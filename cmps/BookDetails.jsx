@@ -4,7 +4,7 @@ import { Loader } from "./Loader.jsx";
 import { utilService } from "../services/util.service.js";
 import { LongTxt } from "./LongTxt.jsx"
 import { AddReview } from "./AddReview.jsx";
-import { UserReview } from "./UserReview.jsx";
+import { ReviewsList } from "./ReviewsList.jsx";
 import { reviewsService } from "../services/reviews.service.js";
 
 const { useState, useEffect, useRef } = React
@@ -141,7 +141,7 @@ export function BookDetails () {
             
         </section>
 
-       <UserReview reviews={reviews} onRemoveReview = {onRemoveReview}/>
+       <ReviewsList reviews={reviews} onRemoveReview = {onRemoveReview}/>
 
         <AddReview onAddReview={onAddReview}/>
         </React.Fragment> 

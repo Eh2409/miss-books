@@ -30,7 +30,7 @@ export function AddReview ({onAddReview}) {
         console.log(new Date(review.readAt).getTime());
         review.readAt = new Date(review.readAt).getTime()
         onAddReview(review)
-        setReview(prev=> ({...prev ,fullname:'',readAt:'',rating: 0,comment:''}))
+        setReview(prev=> ({...reviewsService.getEmptyReview(), avatar:avatar,color:backgroundColorAvatar}))
         commentFormRef.current.reset()
       }
     
