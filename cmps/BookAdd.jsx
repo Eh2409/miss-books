@@ -68,11 +68,12 @@ export function BookAdd (props) {
 
     return (
         <section className='book-add'>
+               <button className='go-back-btn'><Link to='/books'>back to books</Link></button>
+               <div className='book-add-header flex flex-column align-center'>
             <h2>Add Book</h2>
-            <button className='go-back-btn'><Link to='/books'>back to books</Link></button>
-        
             <input type="text" ref={searchRef} placeholder='Search book' className='search-book'/>
-
+            </div>
+        
             {isLoad && <div className='searching flex justify-center' ></div> }
             
             {booksRes &&

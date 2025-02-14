@@ -144,14 +144,14 @@
 .add-review .star-rating input:not(:checked)~label:hover~label {
     color: transparent;
     background: linear-gradient(to right bottom, #fcff00, #ff8800);
-    -webkit-background-clip: text;
+    background-clip: text;
     opacity: 1;
 }
 
 .add-review .star-rating input:checked~label {
     color: transparent;
     background: linear-gradient(to right bottom, #fcff00, #ff8800);
-    -webkit-background-clip: text;
+    background-clip: text;
     opacity: 1;
 }
 
