@@ -43,6 +43,7 @@
 
 .main-filter>form>#isOnSale {
     justify-self: start;
+    accent-color: rgb(44, 226, 56);
 }
 
 .main-filter>form>#rating {

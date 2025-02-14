@@ -8,7 +8,7 @@ export const utilService = {
     getMonthName,
     animateCSS,
     setCurrency,
-    debouce
+    debounce,
 }
 
 function makeId(length = 6) {
@@ -86,7 +86,7 @@ function setCurrency(currencyCode) {
     }
 }
 
-function debouce(func, wait) {
+function debounce(func, wait) {
     let timeout
     return (...args) => {
         clearTimeout(timeout)

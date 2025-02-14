@@ -12,7 +12,7 @@ export function BookAdd (props) {
     // console.log(booksRes)
     // console.log(isLoad)
 
-    const searchBookDebounceRef = useRef(utilService.debouce(onSearchBook, 1000))
+    const searchBookDebounceRef = useRef(utilService.debounce(onSearchBook, 1000))
 
     useEffect(()=>{
         searchBookDebounceRef.current(search)
