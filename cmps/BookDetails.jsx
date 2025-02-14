@@ -14,6 +14,7 @@ const {useParams,Link} = ReactRouterDOM
 export function BookDetails () {
 
     const [book, setBook] = useState(null)
+    const [isLoad,setIsLoad] = useState(false)
     console.log(book);
 
     const params = useParams()
@@ -26,6 +27,7 @@ export function BookDetails () {
     function onGetBook(bookId) {
         bookSerevice.get(bookId)
         .then(book=>setBook(book))
+        .finally(res=>setIsLoad(false))
     }
 
     function onSetPageCountType(pageCount) {
@@ -60,21 +62,25 @@ export function BookDetails () {
     }
 
     function onAddReview(review) {
+        setIsLoad(true)
         reviewsService.addReview(params.bookId,review)
         .then(res=> {
-            book.reviews.push(review)
+            book.reviews.unshift(review)
             const currReviews = book.reviews
             setBook(prev=>({...prev,reviews:currReviews}))
             updateRating(book)
+            setIsLoad(false)
         })
     }
 
     function onRemoveReview(reviewId) {
+        setIsLoad(true)
         reviewsService.removeReview(params.bookId,reviewId)
         .then(res=>{
             book.reviews = book.reviews.filter(review => review.id !== reviewId)
             setBook(prev=>({...prev,reviews: book.reviews}))
             updateRating(book)
+            setIsLoad(false)
         })
     }
 
@@ -87,11 +93,12 @@ export function BookDetails () {
     }
 
 
-    if (!book) return <Loader/>
+    if (!book ) return <Loader/>
     const {title, rating ,authors,description,thumbnail,publishedDate,pageCount,categories,language ,nextBook,prevBook,reviews} = book
     const {amount,currencyCode,isOnSale} = book.listPrice
     return (
         <React.Fragment> 
+        {isLoad && <Loader/>}
         <section className = 'book-details'>
                 
             <div className='thumbnail-wrapper'>
@@ -132,9 +139,9 @@ export function BookDetails () {
             </div>
 
             <div className='flex justify-center justify-between'>
-            <button><Link to={`/books/${prevBook}`}>prev book</Link></button>
+            <button onClick ={()=>{setIsLoad(true)}}><Link to={`/books/${prevBook}`}>prev book</Link></button>
             <button><Link to='/books'>back to books</Link></button>
-            <button><Link to={`/books/${nextBook}`}>next book</Link></button>
+            <button onClick ={()=>{setIsLoad(true)}}><Link to={`/books/${nextBook}`}>next book</Link></button>
             </div>
 
             </div>
