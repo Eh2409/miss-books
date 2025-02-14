@@ -1,28 +1,22 @@
 import {bookSerevice} from "../services/books.service.js";
 import { googleBookService } from '../services/google-books.service.js'
+import{utilService} from '../services/util.service.js'
 const { useState, useEffect, useRef } = React
 const {Link} = ReactRouterDOM
 
 export function BookAdd (props) {
 
+    const [search, setSearch] = useState('')
     const [booksRes, setBooksRes] = useState(null)
     const [isLoad, setIsLoad] = useState(false)
-    console.log(booksRes)
-    console.log(isLoad)
+    // console.log(booksRes)
+    // console.log(isLoad)
 
-    const searchRef = useRef()
-    
+    const searchBookDebounceRef = useRef(utilService.debouce(onSearchBook, 1000))
 
     useEffect(()=>{
-        const onInputTypeDebouce = debouce(onSearchBook, 1000)
-        searchRef.current.addEventListener('input', onInputTypeDebouce)
-        
-        return(()=>{
-        if (searchRef.current) {
-            searchRef.current.removeEventListener('input', onInputTypeDebouce);
-        }
-        })
-    })
+        searchBookDebounceRef.current(search)
+    },[search])
 
     function onAddBook(book) {
         return bookSerevice.isBookInData(book)
@@ -36,42 +30,33 @@ export function BookAdd (props) {
         .catch(error=>console.error(error))
     }
 
-    function onSearchBook(ev) {
+    function onSearchBook(search) {
         setIsLoad(true)
-        
-        const txt = ev.target.value
-        console.log(txt);
-        
-        if (txt.length > 0){
-            getSearchRes(txt)
+     
+        if (search.length > 0){
+            getSearchRes(search)
         } else{
             setIsLoad(false)
         }    
     }
 
-    function getSearchRes(txt){
-        googleBookService.query(txt)
+    function getSearchRes(search){
+        googleBookService.query(search)
         .then(books => setBooksRes(books))
         .then(setIsLoad(false))
     }
 
-    function debouce(func, wait) {
-        let timeout
-        return (...args) => {
-            clearTimeout(timeout)
-            timeout = setTimeout(() => {
-                clearTimeout(timeout)
-                func(...args)
-            }, wait)
-        }
+    function onSearch({target}) {
+        setSearch(target.value)
     }
+   
 
     return (
         <section className='book-add'>
                <button className='go-back-btn'><Link to='/books'>back to books</Link></button>
                <div className='book-add-header flex flex-column align-center'>
             <h2>Add Book</h2>
-            <input type="text" ref={searchRef} placeholder='Search book' className='search-book'/>
+            <input type="text" value={search} onChange={onSearch} placeholder='Search book' className='search-book'/>
             </div>
         
             {isLoad && <div className='searching flex justify-center' ></div> }

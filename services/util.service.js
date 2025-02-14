@@ -7,7 +7,8 @@ export const utilService = {
     getDayName,
     getMonthName,
     animateCSS,
-    setCurrency
+    setCurrency,
+    debouce
 }
 
 function makeId(length = 6) {
@@ -82,5 +83,16 @@ function setCurrency(currencyCode) {
         case 'JPY ': return '¥'
         case 'CNY  ': return '¥'
         case 'GBP ': return '£'
+    }
+}
+
+function debouce(func, wait) {
+    let timeout
+    return (...args) => {
+        clearTimeout(timeout)
+        timeout = setTimeout(() => {
+            clearTimeout(timeout)
+            func(...args)
+        }, wait)
     }
 }
