@@ -108,7 +108,7 @@ export function BookDetails () {
 
             <div className='selected-book-content flex flex-column'>
             <div className='book-title'><span className='tag'>title: </span> {title}</div>
-            <div><span className='tag'>rating: </span> {(`⭐`).repeat(rating)}</div>
+            <div><span className='tag'>rating: </span> {reviews.length>0 ? (`⭐`).repeat(rating): 'Not rated'}</div>
             <div><span className='tag'>by: </span>{authors.map((author,idx)=> (<span key={idx}>{author}, </span>))}</div>
             <div><span className='tag'>price: </span> <span className={setColorAmount(amount)}>
             {utilService.setCurrency(currencyCode)}{amount}</span></div>
