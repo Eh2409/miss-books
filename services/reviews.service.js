@@ -11,7 +11,7 @@ function addReview(bookId, review) {
     return bookSerevice.get(bookId)
         .then(book => {
             review.id = utilService.makeId()
-            book.reviews.push(review)
+            book.reviews.unshift(review)
             book.rating = updateRating(book)
             bookSerevice.save(book)
         })

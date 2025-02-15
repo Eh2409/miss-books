@@ -139,9 +139,9 @@ export function BookDetails () {
             </div>
 
             <div className='flex justify-center justify-between'>
-            <button onClick ={()=>{setIsLoad(true)}}><Link to={`/books/${prevBook}`}>prev book</Link></button>
+            <button><Link to={`/books/${prevBook}`} onClick ={()=>{setIsLoad(true)}}>prev book</Link></button>
             <button><Link to='/books'>back to books</Link></button>
-            <button onClick ={()=>{setIsLoad(true)}}><Link to={`/books/${nextBook}`}>next book</Link></button>
+            <button><Link to={`/books/${nextBook}`} onClick ={()=>{setIsLoad(true)}}>next book</Link></button>
             </div>
 
             </div>
