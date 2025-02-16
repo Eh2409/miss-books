@@ -1,6 +1,7 @@
 import { bookSerevice } from "../services/books.service.js";
 import { GoogleBook } from "./GoogleBook.jsx";
 import { Loader } from "./Loader.jsx";
+import { showSuccessMsg ,showErrorMsg} from '../services/event-bus.service.js'
 
 const { useState, useEffect, useRef } = React
 const {useParams,Link, useNavigate} = ReactRouterDOM
@@ -28,6 +29,8 @@ export function BookEdit (props) {
         bookSerevice.get(params.bookId)
         .then(book=> setEditBook({...book}))
         .then(()=>  setIsLoader(false))
+        .catch(error => console.error(error))
+        .catch(()=>showErrorMsg('An error occurred while loading the book'))
     }
 
     function onSetEditBook(ev) {
@@ -57,6 +60,9 @@ export function BookEdit (props) {
         ev.preventDefault()
         bookSerevice.save(editBook)
         .then(book => navigate(`/books/${book.id}`))
+        .then(()=>{showSuccessMsg('The book has been successfully saved')})
+        .catch(error => console.error(error))
+        .catch(()=>showErrorMsg('An error occurred while saving the book'))
     }
 
     

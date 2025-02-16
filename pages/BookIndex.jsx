@@ -2,6 +2,7 @@ import { BookFilter } from '../cmps/BookFilter.jsx';
 import { BookList } from '../cmps/BookList.jsx';
 import { Loader } from '../cmps/Loader.jsx';
 import { bookSerevice } from '../services/books.service.js'
+import { showSuccessMsg ,showErrorMsg} from '../services/event-bus.service.js'
 
 const { useState, useEffect, useRef } = React
 const { Link} = ReactRouterDOM
@@ -31,15 +32,17 @@ export function BookIndex (props) {
   function laodBooks() {
     bookSerevice.query(filterBy)
     .then(books => setBooks(books))
+    .catch(error => console.error(error))
   }
 
   function onRemoveBook(bookId) {
     bookSerevice.remove(bookId)
     .then(res=>setBooks(books => books.filter(book=>book.id !== bookId)))
+    .then(()=>showSuccessMsg('The book was successfully removed'))
+    .catch(()=>showErrorMsg('Failed to remove the book'))
   }
 
   function onSetIsRemoveBookload(id) {
-    console.log(id);
     setIsRemoveBookload(id)
   }
 

@@ -1,5 +1,6 @@
 import { AvatarPicker } from "./AvatarPicker.jsx";
 import { reviewsService } from "../services/reviews.service.js";
+import { showSuccessMsg ,showErrorMsg} from '../services/event-bus.service.js'
 
 const { useState, useEffect, useRef } = React
 
@@ -28,12 +29,16 @@ export function AddReview ({onAddReview}) {
     
       function onSubmit(ev) {
         ev.preventDefault()
+        if (review.rating === 0) {
+          showErrorMsg('The books rating is not filled in. Please provide a rating')
+          return
+      }
         console.log(new Date(review.readAt).getTime());
         review.readAt = new Date(review.readAt).getTime()
         onAddReview(review)
         setReview(prev=> ({...reviewsService.getEmptyReview(), avatar:avatar,color:backgroundColorAvatar}))
         commentFormRef.current.reset()
-setIsChecked('')
+        setIsChecked('')
       }
     
       function onSetAvatar(ev) {

@@ -4,6 +4,7 @@ import { BookDetails } from "./cmps/BookDetails.jsx"
 import { BookEdit } from "./cmps/BookEdit.jsx"
 import { ContactUs } from "./cmps/ContactUs.jsx"
 import { Newsletter } from "./cmps/NewsLetter.jsx"
+import { UserMsg } from "./cmps/UserMsg.jsx"
 import { AboutUs } from "./pages/AboutUs.jsx"
 import { BookIndex } from "./pages/BookIndex.jsx"
 import { Home } from "./pages/Home.jsx"
@@ -38,6 +39,7 @@ export function App() {
 
                 </Routes>
             </main>
+            <UserMsg/>
         </section>
         </Router>
     )

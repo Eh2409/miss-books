@@ -6,6 +6,7 @@ import { LongTxt } from "./LongTxt.jsx"
 import { AddReview } from "./AddReview.jsx";
 import { ReviewsList } from "./ReviewsList.jsx";
 import { reviewsService } from "../services/reviews.service.js";
+import { showSuccessMsg ,showErrorMsg} from '../services/event-bus.service.js'
 
 const { useState, useEffect, useRef } = React
 
@@ -27,7 +28,9 @@ export function BookDetails (props) {
     function onGetBook(bookId) {
         bookSerevice.get(bookId)
         .then(book=>setBook(book))
-        .finally(res=>setIsLoad(false))
+        .catch(error => console.error(error))
+        .catch(() => showErrorMsg('An error occurred while loading the book'))
+        .finally(()=>setIsLoad(false))
     }
 
     function onSetPageCountType(pageCount) {
@@ -71,6 +74,9 @@ export function BookDetails (props) {
             updateRating(book)
             setIsLoad(false)
         })
+        // .then(()=>showSuccessMsg('The review was successfully added'))
+        .catch(error => console.error(error))
+        // .catch(() => showErrorMsg('There was an error adding the review'))
     }
 
     function onRemoveReview(reviewId) {
@@ -80,8 +86,11 @@ export function BookDetails (props) {
             book.reviews = book.reviews.filter(review => review.id !== reviewId)
             setBook(prev=>({...prev,reviews: book.reviews}))
             updateRating(book)
-            setIsLoad(false)
         })
+        .then(()=>  setIsLoad(false))
+        .then(()=>showSuccessMsg('The review has been successfully deleted'))
+        .catch(error => console.error(error))
+        .catch(() => showErrorMsg('There was an error removing the review'))
     }
 
     function updateRating(book) {

@@ -1,6 +1,8 @@
 import {bookSerevice} from "../services/books.service.js";
 import {googleBookService } from '../services/google-books.service.js'
 import{utilService} from '../services/util.service.js'
+import { showSuccessMsg ,showErrorMsg} from '../services/event-bus.service.js'
+
 
 const { useState, useEffect, useRef } = React
 const {useNavigate} = ReactRouterDOM
@@ -24,13 +26,14 @@ export function GoogleBook (props) {
         return bookSerevice.isBookInData(book)
         .then(res=> {
             if (res) {
-                console.log('The book already exists in Data');
+                showErrorMsg('The book already exists in Data')
                 setIsAddBookLoad(null)
                 return
             }
 
             return bookSerevice.addGoogleBook(book)
             .then(book => navigate(`/books/${book.id}`))
+            .then(()=>showSuccessMsg('The book has been successfully added'))
             .catch(error=>console.error(error))
         })
         .catch(error=>console.error(error))
@@ -49,6 +52,7 @@ export function GoogleBook (props) {
         googleBookService.query(search)
         .then(books => setBooksRes(books))
         .then(() => setIsSearchLoad(false))
+        .catch(()=> showErrorMsg('An error occurred while searching for the book'))
     }
 
     function onSearch({target}) {
