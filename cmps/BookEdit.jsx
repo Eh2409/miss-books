@@ -7,7 +7,7 @@ const { useState, useEffect, useRef } = React
 const {useParams,Link, useNavigate} = ReactRouterDOM
 
 
-export function BookEdit (props) {
+export function BookEdit () {
 
     const [editBook, setEditBook] = useState(bookSerevice.getEmptyBook())
     const [isLoader,setIsLoader] = useState(false)

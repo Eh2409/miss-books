@@ -7,7 +7,7 @@ import { showSuccessMsg ,showErrorMsg} from '../services/event-bus.service.js'
 const { useState, useEffect, useRef } = React
 const { Link} = ReactRouterDOM
 
-export function BookIndex (props) {
+export function BookIndex () {
 
   const [books, setBooks] = useState(null)
   const [filterBy, setFilterBy] = useState({...bookSerevice.getDefaultFilterBy()})
@@ -43,7 +43,7 @@ export function BookIndex (props) {
   }
 
   function onSetIsRemoveBookload(id) {
-    setIsRemoveBookload(id)
+    setIsRemoveBookload( id)
   }
 
   if (!books) return <Loader/>
