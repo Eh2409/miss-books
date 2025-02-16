@@ -1,6 +1,6 @@
 const { useState, useEffect, useRef } = React
 
-export function Newsletter (props) {
+export function Newsletter(props) {
 
     const formRef = useRef()
 
@@ -10,15 +10,15 @@ export function Newsletter (props) {
     }
 
     return (
-     <section className='newsletter'>
-        <h2>Join the Miss Comics Newsletter!</h2>
-        <p>Get the latest Marvel news, deals and exclusive comics.</p>
+        <section className='newsletter'>
+            <h2>Join the Miss Comics Newsletter!</h2>
+            <p>Get the latest Marvel news, deals and exclusive comics.</p>
 
-        <form ref={formRef} onSubmit={onSubmit}>
-        <input type="email" name="email" placeholder="Enter Your Email" required/>
-        <button>Subscribe</button>
-        </form>
+            <form ref={formRef} onSubmit={onSubmit}>
+                <input type="email" name="email" placeholder="Enter Your Email" required />
+                <button>Subscribe</button>
+            </form>
 
-    </section>
+        </section>
     )
 }

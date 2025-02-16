@@ -1,6 +1,6 @@
 const { useState, useEffect, useRef } = React
 
-export function LongTxt ({description,length = 100}) {
+export function LongTxt({ description, length = 100 }) {
 
     const [isReadMore, setIsReadMore] = useState(false)
 
@@ -14,14 +14,14 @@ export function LongTxt ({description,length = 100}) {
     if (!text) return ''
     return (
         <section >
-            {text.length >= length ? 
-            <p>
-              {text}
-            <span className = {`read-bth ${isReadMore ? 'less' : 'more'}`} href="#" onClick={onsetReadMore}>
-                {isReadMore ? 'read less' : 'read more'}
-                </span>
-            </p>
-            : <p>{description}</p>}
+            {text.length >= length ?
+                <p>
+                    {text}
+                    <span className={`read-bth ${isReadMore ? 'less' : 'more'}`} href="#" onClick={onsetReadMore}>
+                        {isReadMore ? 'read less' : 'read more'}
+                    </span>
+                </p>
+                : <p>{description}</p>}
         </section>
     )
 }
