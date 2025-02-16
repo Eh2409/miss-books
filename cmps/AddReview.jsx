@@ -10,6 +10,7 @@ export function AddReview ({onAddReview}) {
     const [backgroundColorAvatar, setBackgroundColorAvatar] = useState("#e66465")
     const [isPickerOn, setIsPickerOn] = useState(false)
     const [review, setReview] = useState({...reviewsService.getEmptyReview(), avatar:avatar,color:backgroundColorAvatar})
+    const [isChecked, setIsChecked] = useState('')
 
     const commentFormRef = useRef()
     console.log(review);
@@ -32,6 +33,7 @@ export function AddReview ({onAddReview}) {
         onAddReview(review)
         setReview(prev=> ({...reviewsService.getEmptyReview(), avatar:avatar,color:backgroundColorAvatar}))
         commentFormRef.current.reset()
+setIsChecked('')
       }
     
       function onSetAvatar(ev) {
@@ -45,6 +47,10 @@ export function AddReview ({onAddReview}) {
         const color = ev.target.value
         setBackgroundColorAvatar(color)
         setReview(prev=> ({...prev ,color:color}))
+      }
+
+      function onSetIsChecked({target}) {
+        setIsChecked(target.value)
       }
 
     return(
@@ -71,15 +77,20 @@ export function AddReview ({onAddReview}) {
                 <label className="rating flex align-center"> 
                     <span>Rate the book: </span> 
                 <div className="star-rating">
-                    <input type="radio" name="rating" id="star-5" value="5" onChange={onInpitReview}/>
+                    <input type="radio" name="rating" id="star-5" value="5" checked={isChecked=== '5'} 
+                    onChange={(event) => {onInpitReview(event); onSetIsChecked(event)}}/>
                     <label htmlFor="star-5" className="fa star" ></label>
-                    <input type="radio" name="rating" id="star-4" value="4" onChange={onInpitReview}/>
+                    <input type="radio" name="rating" id="star-4" value="4" checked={isChecked === '4'}
+                      onChange={(event) => {onInpitReview(event); onSetIsChecked(event)}}/>
                     <label htmlFor="star-4" className="fa star"></label>
-                    <input type="radio" name="rating" id="star-3" value="3" onChange={onInpitReview}/>
+                    <input type="radio" name="rating" id="star-3" value="3" checked={isChecked === '3'}
+                      onChange={(event) => {onInpitReview(event); onSetIsChecked(event)}}/>
                     <label htmlFor="star-3" className="fa star"></label>
-                    <input type="radio" name="rating" id="star-2" value="2" onChange={onInpitReview}/>
+                    <input type="radio" name="rating" id="star-2" value="2" checked={isChecked === '2'} 
+                     onChange={(event) => {onInpitReview(event); onSetIsChecked(event)}}/>
                     <label htmlFor="star-2" className="fa star"></label>
-                    <input type="radio" name="rating" id="star-1" value="1" onChange={onInpitReview}/>
+                    <input type="radio" name="rating" id="star-1" value="1" checked={isChecked === '1'} 
+                     onChange={(event) => {onInpitReview(event); onSetIsChecked(event)}}/>
                     <label htmlFor="star-1" className="fa star"></label>
                 </div></label>
 
