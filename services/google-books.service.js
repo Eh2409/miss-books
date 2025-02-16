@@ -1,29 +1,22 @@
 import { bookSerevice } from "./books.service.js";
 import { utilService } from "./util.service.js";
-import { asyncStorageService } from "./async-storage.service.js";
 
 export const googleBookService = {
     query,
 }
 
 const BOOK_RES_KEY = 'bookRes'
-var gBooks = {}
-_loadResBooks()
-console.log('Here:', gBooks)
+var gBooksRes = utilService.loadFromStorage(BOOK_RES_KEY) || {}
 
-function _loadResBooks() {
-    return asyncStorageService.query(BOOK_RES_KEY)
-        .then(res => gBooks = res)
-}
 
 function query(txt) {
     const url = `https://www.googleapis.com/books/v1/volumes?printType=books&q=${txt}&country=US`
 
-    console.log('Here:', gBooks)
+    console.log('Here:', gBooksRes)
 
-    if (gBooks[txt]) {
+    if (gBooksRes[txt]) {
         console.log('from CACH')
-        return Promise.resolve(gBooks[txt])
+        return Promise.resolve(gBooksRes[txt])
     }
 
     return fetch(url).then(res => res.json())
@@ -36,8 +29,8 @@ function query(txt) {
             const booksWithISBN = books.items.filter(book => book.volumeInfo.industryIdentifiers)
             const newBooks = setBookData(booksWithISBN)
             console.log('from FETCH')
-            gBooks[txt] = newBooks
-            utilService.saveToStorage(BOOK_RES_KEY, gBooks)
+            gBooksRes[txt] = newBooks
+            utilService.saveToStorage(BOOK_RES_KEY, gBooksRes)
             return newBooks
         })
 
@@ -86,7 +79,7 @@ function _getPublishedYear(publishedDate) {
 
 
 
-function demoData() {
+function _demoData() {
     return {
         "kind": "books#volumes",
         "totalItems": 659,

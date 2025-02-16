@@ -11,7 +11,7 @@ const { useState, useEffect, useRef } = React
 
 const {useParams,Link} = ReactRouterDOM
 
-export function BookDetails () {
+export function BookDetails (props) {
 
     const [book, setBook] = useState(null)
     const [isLoad,setIsLoad] = useState(false)

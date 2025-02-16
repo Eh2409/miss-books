@@ -38,9 +38,7 @@ export function BookFilter ({filterBy,onSetFilterBy}) {
     setminRating(0)
     setEditFilterBy(defaultFilterRef.current)
   }
-
-  const {title} = editFilterBy
-
+  
     return(
         <section className='main-filter'>
           <h3>filter books</h3>

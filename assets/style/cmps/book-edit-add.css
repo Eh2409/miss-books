@@ -1,4 +1,5 @@
-.add-edit-modal {
+.book-edit-add {
+    position: relative;
     border: none;
     padding: 0;
     border-radius: 20px;
@@ -7,9 +8,21 @@
     backdrop-filter: blur(6px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     border: 3px solid rgba(255, 255, 255, 0.3);
+    margin-block-end: 1em;
 }
 
-.add-edit-modal>form {
+.book-edit-add>.go-back-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.book-edit-add>h2 {
+    align-self: center;
+    font-weight: bold;
+}
+
+.book-edit-add>form {
     position: relative;
     padding-block: 1em;
     padding-inline: 1em;
@@ -17,7 +30,7 @@
     font-size: 0.8em;
 }
 
-.add-edit-modal>form>pre {
+.book-edit-add>form {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1em;
     text-transform: capitalize;
@@ -25,16 +38,12 @@
     margin: 0;
 }
 
-.add-edit-modal>form>pre>h2 {
-    align-self: center;
-    font-weight: bold;
-}
 
-.add-edit-modal>form>pre>input {
+.book-edit-add>form>input {
     padding: 0.5em;
 }
 
-.add-edit-modal>form>pre>button {
+.book-edit-add>form>button {
     background-image: linear-gradient(to right bottom, rgb(255, 205, 40, 0.8), rgb(253, 112, 57, 0.8));
     font-weight: bold;
     transition: 200ms;
@@ -44,16 +53,8 @@
     }
 }
 
-.add-edit-modal>form>pre>.close-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-radius: 50%;
-}
-
-
 @media (min-width: 800px) {
-    .add-edit-modal>form {
+    .book-edit-add>form {
         padding-inline: 2em;
         width: 70vw;
         font-size: 1em;
@@ -61,7 +62,7 @@
 }
 
 @media (min-width: 1150px) {
-    .add-edit-modal>form {
+    .book-edit-add>form {
         padding-inline: 3em;
         width: 50vw;
     }

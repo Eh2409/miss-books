@@ -1,0 +1,91 @@
+.google-book {
+    width: 100%;
+    margin-block-end: 2em;
+}
+
+.google-book>.google-book-header>h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    justify-self: center;
+}
+
+.google-book>.google-book-header>.search-book {
+    justify-self: center;
+    padding: 0.5em;
+    width: 70%;
+    border-radius: 100vh;
+}
+
+.google-book>.searching {
+    margin: 1em;
+    padding: 1em;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 8px solid;
+    border-color: #766DF4 #0000;
+    animation: s1 1s infinite;
+    place-self: center;
+}
+
+@keyframes s1 {
+    to {
+        transform: rotate(.5turn)
+    }
+}
+
+
+.google-book>.no-res {
+    padding: 1em;
+    font-size: 1.5em;
+}
+
+.google-book>ul {
+    font-size: 1.2em;
+    padding: 0;
+    margin: 1em auto;
+    width: 90%;
+    border-radius: 10px;
+    outline: solid 2px rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+}
+
+.google-book>ul>li {
+    margin: 0;
+}
+
+.google-book>ul>li:nth-child(odd) {
+    background: linear-gradient(to left top, rgba(224, 202, 53, 0.3), rgba(231, 246, 250, 0.3));
+
+}
+
+.google-book>ul>li:nth-child(even) {
+    background: linear-gradient(to left top, rgba(214, 123, 25, 0.3), rgba(231, 246, 250, 0.3));
+
+}
+
+.google-book>ul>li>.google-book-thumbnail {
+    width: 60px;
+    aspect-ratio: auto;
+}
+
+
+@media (min-width: 800px) {
+    .google-book>.google-book-header>.search-book {
+        width: 70%;
+    }
+
+    .google-book>ul {
+        width: 70%;
+    }
+
+}
+
+@media (min-width: 1150px) {
+    .google-book>.google-book-header>.search-book {
+        width: 60%;
+    }
+
+    .google-book>ul {
+        width: 60%;
+    }
+}

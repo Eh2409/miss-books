@@ -1,45 +1,33 @@
 import { bookSerevice } from "../services/books.service.js";
+import { GoogleBook } from "./GoogleBook.jsx";
 import { Loader } from "./Loader.jsx";
+
 const { useState, useEffect, useRef } = React
+const {useParams,Link, useNavigate} = ReactRouterDOM
 
-export function BookEdit ({onEditBook,editBookId,onSetSevedBook}) {
 
+export function BookEdit (props) {
 
-    const [editBook, setEditBook] = useState(null)
+    const [editBook, setEditBook] = useState(bookSerevice.getEmptyBook())
+    const [isLoader,setIsLoader] = useState(false)
+    const [isSave, setIsSave] = useState(false)
+    console.log(editBook);
 
-    const modal = useRef(null) 
-    console.log(modal);
-    console.log(modal.current);
+    const navigate = useNavigate()
+    const params = useParams()
     
     
-
     useEffect(()=>{
-        if (modal.current) {
-            onGetBook(editBookId)
-            document.addEventListener('keydown',onEscape)
-        }
-
-        return(()=>{  
-            onEditBook(null)
-            document.removeEventListener('keydown',onEscape)
-        })
+        if (!params.bookId) return
+        setIsLoader(true)
+        loadBook()
     },[])
 
 
-    function onEscape(ev) {
-        if (ev.key==='Escape') {
-            onEditBook(null)
-        }
-    }
-
-    function onGetBook(editBookId) {
-        bookSerevice.get(editBookId)
+    function loadBook() {
+        bookSerevice.get(params.bookId)
         .then(book=> setEditBook({...book}))
-        .then(res=> modal.current.showModal())
-    }
-
-    function onCloseModalBtn() {
-        onEditBook(null)
+        .then(()=>  setIsLoader(false))
     }
 
     function onSetEditBook(ev) {
@@ -67,47 +55,45 @@ export function BookEdit ({onEditBook,editBookId,onSetSevedBook}) {
 
     function onSaveBook(ev) {
         ev.preventDefault()
-        onSetSevedBook(editBook)
+        bookSerevice.save(editBook)
+        .then(book => navigate(`/books/${book.id}`))
     }
 
-    function onClickOutsideModelCheck(ev) {
-        if(ev.target === modal.current){
-            onEditBook(null)
-        }
-    }
     
-    
+
+    const {title,authors,categories,description,publishedDate,pageCount} = editBook
+    const {amount, isOnSale} = editBook.listPrice
+
+    if (isLoader) return <Loader/>
     return(
-    <section>
-        <dialog ref={modal} className = 'add-edit-modal' onClick={onClickOutsideModelCheck}>
-            <form method="dialog" onSubmit={onSaveBook}> 
-                {editBook &&
-                <pre className='flex flex-column'>
-                    <h2>Edit book</h2>
+    <section className = 'book-edit-add flex flex-column align-center' >
+        <h2>{params.bookId ? 'Edit' : 'Add'} book</h2>
+         {!editBook.id && <GoogleBook/>}
+
+         {editBook && <form onSubmit={onSaveBook} className='flex flex-column'> 
                     <label htmlFor="title">title:</label>
-                    <input type="text" id='title' name='title' value={editBook.title} onChange={onSetEditBook} required  />
+                    <input type="text" id='title' name='title' value={title} onChange={onSetEditBook} required  />
                     <label htmlFor="authors">authors: {(`(Between each author name insert ',')`)}</label>
-                    <input type="authors" id='authors' name='authors' value={editBook.authors} onChange={onSetEditBook} required  />
+                    <input type="authors" id='authors' name='authors' value={authors} onChange={onSetEditBook} required  />
                     <label htmlFor="categories">categories: {(`(Between each category name insert ',')`)}</label>
-                    <input type="authors" id='categories' name='categories' value={editBook.categories} onChange={onSetEditBook} required />
+                    <input type="authors" id='categories' name='categories' value={categories} onChange={onSetEditBook} required />
                     <label htmlFor="description">description:</label>
-                    <input type="text" id='description' name='description' value={editBook.description} onChange={onSetEditBook} required  />
+                    <input type="text" id='description' name='description' value={description} onChange={onSetEditBook} required  />
                     <label htmlFor="price">price:</label>
-                    <input type="number" id='price' name='listPrice.amount' value={editBook.listPrice.amount || ''} onChange={onSetEditBookNested}  required />
+                    <input type="number" id='price' name='listPrice.amount' value={amount || ''} onChange={onSetEditBookNested}  required />
                     <label htmlFor="publishedDate">published Date:</label>
-                    <input type="number" id='publishedDate' name='publishedDate' value={editBook.publishedDate || ''}  onChange={onSetEditBook}  required  />
+                    <input type="number" id='publishedDate' name='publishedDate' value={publishedDate || ''}  onChange={onSetEditBook}  required  />
                     <label htmlFor="pageCount">page Count:</label>
-                    <input type="number" id='pageCount' name='pageCount' value={editBook.pageCount || ''}  onChange={onSetEditBook} required  />
+                    <input type="number" id='pageCount' name='pageCount' value={pageCount || ''}  onChange={onSetEditBook} required  />
                     <div>
                     <label htmlFor="isOnSale">On Sale:</label>
-                    <input type="checkbox" id='isOnSale' name='listPrice.isOnSale' checked={editBook.listPrice.isOnSale} onChange={onSetEditBookNested} />
+                    <input type="checkbox" id='isOnSale' name='listPrice.isOnSale' checked={isOnSale} onChange={onSetEditBookNested} />
                     </div>
-                <button>save</button>
-                <button type="button" className='close-btn' onClick={onCloseModalBtn}>X</button>
-                </pre>}
-            </form>
-        </dialog>
-        {!editBook && <Loader/>}
+                <button onClick ={()=>{setIsSave(true)}}>{isSave ? <div className='mini-loader'></div> : 'Save' }</button>
+                
+        </form>}
+
+            <button className='go-back-btn'><Link to='/books'>back to books</Link></button>
     </section>
   )
 }

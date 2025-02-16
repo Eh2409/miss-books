@@ -1,73 +1,84 @@
 import {bookSerevice} from "../services/books.service.js";
-import { googleBookService } from '../services/google-books.service.js'
+import {googleBookService } from '../services/google-books.service.js'
 import{utilService} from '../services/util.service.js'
-const { useState, useEffect, useRef } = React
-const {Link} = ReactRouterDOM
 
-export function BookAdd (props) {
+const { useState, useEffect, useRef } = React
+const {useNavigate} = ReactRouterDOM
+
+export function GoogleBook (props) {
 
     const [search, setSearch] = useState('')
     const [booksRes, setBooksRes] = useState(null)
-    const [isLoad, setIsLoad] = useState(false)
-    // console.log(booksRes)
-    // console.log(isLoad)
-
+    const [isSearchLoad, setIsSearchLoad] = useState(false)
+    const [isAddBookLoad, setIsAddBookLoad] = useState(null) 
+  
     const searchBookDebounceRef = useRef(utilService.debounce(onSearchBook, 1000))
+    const navigate = useNavigate()
 
     useEffect(()=>{
+        if(search) setIsSearchLoad(true)
         searchBookDebounceRef.current(search)
     },[search])
 
     function onAddBook(book) {
         return bookSerevice.isBookInData(book)
         .then(res=> {
-            if (res) return console.log('The book already exists in Data');
+            if (res) {
+                console.log('The book already exists in Data');
+                setIsAddBookLoad(null)
+                return
+            }
 
             return bookSerevice.addGoogleBook(book)
-            .then(res => console.log('The book has been successfully added to Data'))
+            .then(book => navigate(`/books/${book.id}`))
             .catch(error=>console.error(error))
         })
         .catch(error=>console.error(error))
     }
 
     function onSearchBook(search) {
-        setIsLoad(true)
-     
         if (search.length > 0){
             getSearchRes(search)
         } else{
-            setIsLoad(false)
+            setIsSearchLoad(false)
+            setBooksRes(null)
         }    
     }
 
     function getSearchRes(search){
         googleBookService.query(search)
         .then(books => setBooksRes(books))
-        .then(setIsLoad(false))
+        .then(() => setIsSearchLoad(false))
     }
 
     function onSearch({target}) {
         setSearch(target.value)
     }
-   
+
+    function onSetIsAddBookLoad(isbn) {
+        console.log(isbn);
+        setIsAddBookLoad(isbn)
+    }
+
 
     return (
-        <section className='book-add'>
-               <button className='go-back-btn'><Link to='/books'>back to books</Link></button>
-               <div className='book-add-header flex flex-column align-center'>
-            <h2>Add Book</h2>
-            <input type="text" value={search} onChange={onSearch} placeholder='Search book' className='search-book'/>
+        <section className='google-book'>
+               <div className='google-book-header flex flex-column align-center'>
+            <h3>Search book on Google</h3>
+            <input type="text" value={search} onChange={onSearch} placeholder='Enter book name' className='search-book'/>
             </div>
         
-            {isLoad && <div className='searching flex justify-center' ></div> }
-            
+            {isSearchLoad && <div className='searching flex justify-center' ></div> }
+
             {booksRes &&
             <ul>
             {booksRes.map((book,idx )=>{
                   return <li key={idx} className='flex justify-between align-center'> 
-                    <img src={book.thumbnail} alt={book.title} />
+                    <img src={book.thumbnail} alt={book.title} className='google-book-thumbnail' />
                     <span>{book.title}</span>
-                    <button onClick ={()=>{onAddBook(book)}}>Add Book</button>
+                    <button onClick ={()=>{onAddBook(book);onSetIsAddBookLoad(book.isbn)}}>
+                       { isAddBookLoad === book.isbn ? <div className='mini-loader'></div> : ' Add book'}
+                    </button>
                   </li>
             })}
             </ul>}

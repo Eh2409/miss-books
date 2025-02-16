@@ -1,7 +1,7 @@
 import { About } from "./cmps/About.jsx"
 import { AppHeader } from "./cmps/AppHeader.jsx"
-import { BookAdd } from "./cmps/BookAdd.jsx"
 import { BookDetails } from "./cmps/BookDetails.jsx"
+import { BookEdit } from "./cmps/BookEdit.jsx"
 import { ContactUs } from "./cmps/ContactUs.jsx"
 import { Newsletter } from "./cmps/NewsLetter.jsx"
 import { AboutUs } from "./pages/AboutUs.jsx"
@@ -10,10 +10,8 @@ import { Home } from "./pages/Home.jsx"
 
 const Router =  ReactRouterDOM.HashRouter
 const {Routes, Route } = ReactRouterDOM
-const { useState, useEffect, useRef } = React
 
 export function App() {
-
 
     return (
         <Router>
@@ -34,7 +32,9 @@ export function App() {
 
                     <Route path='/books' element = {<BookIndex />}/>
                     <Route path='/books/:bookId' element = {<BookDetails/>}/>
-                    <Route path='/books/book-add' element = {<BookAdd/>}/>
+
+                    <Route path='/books/book-add' element = {<BookEdit/>}/>
+                    <Route path='/books/book-edit/:bookId' element = {<BookEdit/>}/>
 
                 </Routes>
             </main>

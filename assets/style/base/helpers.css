@@ -89,3 +89,22 @@
     color: rgb(117, 27, 195);
     cursor: pointer;
 }
+
+/* mini loader */
+
+.mini-loader {
+    padding: 1em;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    border: 8px solid;
+    border-color: #f1ca07 #0000;
+    animation: s1 1s infinite;
+    place-self: center;
+}
+
+@keyframes s1 {
+    to {
+        transform: rotate(.5turn)
+    }
+}
