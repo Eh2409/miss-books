@@ -4,6 +4,7 @@ export function LongTxt ({description,length = 100}) {
 
     const [isReadMore, setIsReadMore] = useState(false)
 
+
     const text = isReadMore ? description + ' ' : description.substring(1, length) + '... '
 
     function onsetReadMore() {
@@ -13,11 +14,14 @@ export function LongTxt ({description,length = 100}) {
     if (!text) return ''
     return (
         <section >
-            {text}
-            {text.length >= length && 
+            {text.length >= length ? 
+            <p>
+              {text}
             <span className = {`read-bth ${isReadMore ? 'less' : 'more'}`} href="#" onClick={onsetReadMore}>
                 {isReadMore ? 'read less' : 'read more'}
-            </span>}
+                </span>
+            </p>
+            : <p>{description}</p>}
         </section>
     )
 }
