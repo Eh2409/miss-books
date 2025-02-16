@@ -3,8 +3,13 @@ import { BookPreview } from "./BookPreview.jsx"
 const { useState, useEffect, useRef } = React
 const {Link , NavLink} = ReactRouterDOM
 
-export function BookList ({books,onRemoveBook,onEditBook}) {
+export function BookList ({books,onRemoveBook,onSetIsRemoveBookload,isRemoveBookload}) {
   
+  function kaka(id) {
+    console.log(id);
+    onSetIsRemoveBookload(id)
+  }
+
     return(
         <section>
         <ul className='book-list clean-list'>
@@ -14,8 +19,9 @@ export function BookList ({books,onRemoveBook,onEditBook}) {
               <div className='book-btns flex'>
                 
                 <button><Link to={`/books/${book.id}`}>book details</Link></button>
-                <button onClick={()=>(onRemoveBook(book.id))}>remove</button>
-                <button onClick={()=>(onEditBook(book.id))}>edit</button>
+                <button onClick={()=>{onRemoveBook(book.id);kaka(book.id)}}>
+                  {isRemoveBookload === book.id ? <div className='mini-loader'></div> : 'remove'}</button>
+                <button><Link to={`/books/book-edit/${book.id}`}>edit</Link></button>
               </div>
             </li>
           })}

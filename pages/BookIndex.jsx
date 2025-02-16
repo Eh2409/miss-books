@@ -1,5 +1,3 @@
-
-import { BookEdit } from '../cmps/BookEdit.jsx';
 import { BookFilter } from '../cmps/BookFilter.jsx';
 import { BookList } from '../cmps/BookList.jsx';
 import { Loader } from '../cmps/Loader.jsx';
@@ -11,12 +9,14 @@ const { Link} = ReactRouterDOM
 export function BookIndex (props) {
 
   const [books, setBooks] = useState(null)
-  const [editBookId, setEditBookId] = useState(null)
   const [filterBy, setFilterBy] = useState({...bookSerevice.getDefaultFilterBy()})
+  const [isRemoveBookload, setIsRemoveBookload] = useState(null)
 
   // console.log(books);
   // console.log(selectedBookId);
   console.log(filterBy);
+
+  const removeBtnRef = useRef()
   
 
   useEffect(()=>{
@@ -38,21 +38,9 @@ export function BookIndex (props) {
     .then(res=>setBooks(books => books.filter(book=>book.id !== bookId)))
   }
 
-  function onEditBook(bookId) {
-    setEditBookId(bookId)
-  }
-
-  function onSetSevedBook(book) {
-    bookSerevice.save(book)
-    .then(savedBook => setBooks(prev =>{
-      var idx = prev.findIndex(prebook => prebook.id === savedBook.id)
-      if (idx<0) {
-        return [...prev,book]
-      } else{
-        return prev.map((book,currIdx)=> currIdx === idx ? savedBook : book)
-      }
-    }))
-    .finally(setEditBookId(null))
+  function onSetIsRemoveBookload(id) {
+    console.log(id);
+    setIsRemoveBookload(id)
   }
 
   if (!books) return <Loader/>
@@ -60,9 +48,8 @@ export function BookIndex (props) {
     <section>
       <button><Link to='/books/book-add'>Add Book</Link></button>
       <BookFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy}/>
-      {books.length > 0 ? <BookList books={books} onRemoveBook ={onRemoveBook} onEditBook={onEditBook}/> 
+      {books.length > 0 ? <BookList books={books} onRemoveBook ={onRemoveBook} onSetIsRemoveBookload={onSetIsRemoveBookload} isRemoveBookload={isRemoveBookload}/> 
       : <h2 className ='book-not-found flex justify-center align-center'>Sorry, the book you were looking for is not found.</h2>}
-      {editBookId && <BookEdit onEditBook={onEditBook} editBookId={editBookId} onSetSevedBook={onSetSevedBook} />}
     </section>
   )
 }
