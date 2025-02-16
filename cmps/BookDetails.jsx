@@ -74,9 +74,9 @@ export function BookDetails (props) {
             updateRating(book)
             setIsLoad(false)
         })
-        // .then(()=>showSuccessMsg('The review was successfully added'))
+        .then(()=>showSuccessMsg('The review was successfully added'))
         .catch(error => console.error(error))
-        // .catch(() => showErrorMsg('There was an error adding the review'))
+        .catch(() => showErrorMsg('There was an error adding the review'))
     }
 
     function onRemoveReview(reviewId) {

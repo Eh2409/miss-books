@@ -197,7 +197,7 @@ function _demoData() {
         id: utilService.makeId(),
         isbn: '9781302513399',
         title: 'Amazing Spider-Man Epic Collection',
-        rating: 0,
+        rating: 4,
         subtitle: 'Assassin Nation',
         authors: [
             "David Michelinie",
@@ -216,8 +216,183 @@ function _demoData() {
             currencyCode: 'USD',
             isOnSale: false,
         },
-        reviews: [],
-    },]
+        reviews: [
+            {
+                "avatar": "http://127.0.0.1:5500/assets/img/avatar/1.png",
+                "color": "#e66465",
+                "fullname": "iron man",
+                "readAt": 1739664000000,
+                "rating": 4,
+                "comment": "Great comic\n",
+                "id": "YqE5Zn"
+            }, {
+                "avatar": "assets/img/avatar/3.png",
+                "color": "#66beea",
+                "fullname": "captain america",
+                "readAt": 1739664000000,
+                "rating": 5,
+                "comment": "The best comic in the world, cool spedman!\n",
+                "id": "ReGxav"
+            }
+        ],
+    },
+    {
+        "isbn": "9780785178446",
+        "title": "Invincible Iron Man Vol. 5",
+        "rating": 0,
+        "subtitle": "Stark Resilient Book 1",
+        "authors": [
+            "Matt Fraction"
+        ],
+        "publishedDate": 2011,
+        "description": "The Hammer Girls unleash DETROIT STEEL on a world hardly ready for that much metal and chrome, and God help anyone that gets in his way. Tony keeps sifting through the ashes of his old life and tries to rebuild who he is and what he does. Rhodey struggles to be a man of war in a peacetime empire. COLLECTING: Invincible Iron Man #25-28",
+        "pageCount": 131,
+        "categories": [
+            "Comics & Graphic Novels"
+        ],
+        "thumbnail": "assets/img/ComicsCovers/4.jpg",
+        "language": "en",
+        "listPrice": {
+            "amount": 6.99,
+            "currencyCode": "USD",
+            "isOnSale": false
+        },
+        "reviews": [],
+        "isOnSale": false,
+        "id": "v860X",
+        "nextBook": "yNxrrf",
+        "prevBook": "kuWjKn"
+    }, {
+        "isbn": "9781803367712",
+        "title": "Captain America: The Shield of Sam Wilson",
+        "rating": 0,
+        "subtitle": "",
+        "authors": [
+            "Gloria J. Browne-Marshall",
+            "Sheree Renée Thomas",
+            "Alex Simmons",
+        ],
+        "publishedDate": 2025,
+        "description": "The new Captain America has a big shield to carry. Is he up to the task? Find out in these subversive, exciting and uplifting short stories inspired by the Marvel comic book universe, written by celebrated Black authors. The new Captain America has a heavy shield to hold. As a black man in America, Sam Wilson knows he has to be twice as good to get half as much credit. He must be a paragon of virtue for a nation that has mixed feelings towards him. In these thirteen brand-new stories, the all-new Captain America must thwart an insurrectionist plot, travel back in time, foil a racist conspiracy, and save the world over and over again. As the Falcon, Sam Wilson was the first African-American superhero in mainstream comic books. Sam's trials and tribulations reflect the struggles many Black Americans go through today, as Sam balances fighting supervillains and saving the world with the difficulties of being the first Black Captain America. This action-packed anthology inspired by the Marvel comic book universe, will see Sam team up with familiar friends like Steve Rogers, Redwing and Nomad, while fighting HYDRA, Sabretooth, Kingpin, and other infamous villains. These are stories of death-defying courage, Black love and self-discovery. These are the stories of a super hero learning what it means to be a symbol. These are the stories of Sam Wilson. Featuring original stories by L.L. McKinney, Maurice Broaddus, Jesse J. Holland, Gar Anthony Haywood, Nicole Givens Kurtz, Kyoko M., Sheree Renee Thomas, Gary Phillips, Danian Jerry, Gloria J. Browne Marshall, Glenn Parris, Christopher Chambers, Alex Simmons.",
+        "pageCount": 302,
+        "categories": [
+            "Fiction"
+        ],
+        "thumbnail": "assets/img/ComicsCovers/5.jpg",
+        "language": "en",
+        "listPrice": {
+            "amount": 313,
+            "currencyCode": "USD",
+            "isOnSale": false
+        },
+        "reviews": [],
+        "isOnSale": true,
+        "id": "RoXIT",
+        "nextBook": "LNqYLZ",
+        "prevBook": "v860X"
+    }, {
+        "isbn": "9781302531591",
+        "title": "Scarlet Witch By Steve Orlando Vol. 4",
+        "rating": 0,
+        "subtitle": "Queen Of Chaos",
+        "authors": [
+            "Steve Orlando"
+        ],
+        "publishedDate": 2025,
+        "description": "Collects Scarlet Witch (2024) #1-5 and material from Crypt Of Shadows (2023) #1. Steve Orlando's spellbinding saga is full of surprises! The Scarlet Witch has carved out a haven for herself in upstate New York, but it's all about to go up in flames. Wanda's newfound peace has drawn the wrath of a primal force unlike anything she's ever faced before, and it won't stop until it razes Wanda's world. A clash of titans awaits as Wanda and her allies fight for all she holds dear! But what happens when an unstoppable force meets the end of all things? When pure chaos meets pure destruction? Wanda's about to find out - if she survives long enough! Trapped in the realm of the Queen of Nevers, the Scarlet Witch fights to reach the land of the living - and comes face to face with Lore, her necromantic multiversal counterpart! Plus: Wanda teams up with Daredevil to exorcise a murderous spirit from the subway tunnels of Hell's Kitchen!",
+        "pageCount": 143,
+        "categories": [
+            "Comics & Graphic Novels"
+        ],
+        "thumbnail": "assets/img/ComicsCovers/6.jpg",
+        "language": "en",
+        "listPrice": {
+            "amount": 304,
+            "currencyCode": "USD",
+            "isOnSale": false
+        },
+        "reviews": [],
+        "isOnSale": false,
+        "id": "4LouT",
+        "nextBook": "YX6dig",
+        "prevBook": "RoXIT"
+    }, {
+        "isbn": "9781302530563",
+        "title": "Deadpool By Cody Ziglar Vol. 1",
+        "rating": 0,
+        "subtitle": "Blood Bond",
+        "authors": [
+            "Cody Ziglar"
+        ],
+        "publishedDate": 2024,
+        "description": "Collects Deadpool (2024) #1-5. A new era for the Merc with a Mouth - and a gun, and a sword! CODY ZIGLAR (Futurama, MILES MORALES: SPIDER-MAN) has a wild ride planned for the regenerating degenerate - beginning by introducing a terrifying new villain who won't stop until he catches Wade Wilson in his Death Grip! But Deadpool has had (well, stolen) the great idea to start his own boutique mercenary agency. A startup is a lot of work though, so Wade asks Taskmaster to run it! Their first assignment? Finding out who this Death Grip is and why he's so interested in Deadpool. Their next problem? Someone has hired Crossbones to hunt them down! Plus: A surprising new recruit joins the fun, and that calls for a training montage! And Deadpool's healing factor is tested to its limits. At what point will the Merc's mouth stop growing back?",
+        "pageCount": 135,
+        "categories": [
+            "Comics & Graphic Novels"
+        ],
+        "thumbnail": "assets/img/ComicsCovers/7.jpg",
+        "language": "en",
+        "listPrice": {
+            "amount": 8.99,
+            "currencyCode": "USD",
+            "isOnSale": false
+        },
+        "reviews": [],
+        "isOnSale": false,
+        "id": "apSeo",
+        "nextBook": "mf5Gs4",
+        "prevBook": "DD2LU"
+    }, {
+        "isbn": "9781506742656",
+        "title": "Marvel's Spider-Man: Miles Morales--The Poster Collection",
+        "rating": 0,
+        "subtitle": "",
+        "authors": [],
+        "publishedDate": 2024,
+        "description": "Marvel’s Spider-Man: Miles Morales returns! Relive the adventure of the award-winning video game Marvel’s Spider-Man: Miles Morales with this gorgeous poster collection featuring key moments from the game! With perforated edges, these iconic images are easy to remove for display purposes.",
+        "pageCount": 46,
+        "categories": [
+            "Art"
+        ],
+        "thumbnail": "assets/img/ComicsCovers/8.jpg",
+        "language": "en",
+        "listPrice": {
+            "amount": 208,
+            "currencyCode": "USD",
+            "isOnSale": false
+        },
+        "reviews": [],
+        "isOnSale": true,
+        "id": "Ecg6a",
+        "nextBook": "mjUGrO",
+        "prevBook": "apSeo"
+    }, {
+        "isbn": "1302934627",
+        "title": "Spider-Punk",
+        "rating": 0,
+        "subtitle": "Battle of the Banned",
+        "authors": [
+            "Cody Ziglar"
+        ],
+        "publishedDate": 2023,
+        "description": "Collects Spider-Punk #1-5. Anarchy in the Spider-Verse! Hobie Brown is the head-spiked Spider-Punk - all set to protect Earth-138 with his ax in hand and his chaotic band of punk-rockin' heroes backing him! But even though the Norman Osborn of Hobie's dimension is dead, will the chaos he created be too much for Spider-Punk and the gang to handle? What secrets lie under the community center Spidey and his crew call home base? And why is Taskmaster crashing the party to stomp out Spider-Punk? It all ties back to one thing, and Hobie had better figure it out fast. It's time to take to the road in the Spider-Van, but Hobie and crew will soon end up joining Daredevil in the giant shadow of the Kingpin! Prepare for an arachnid adventure like you've never seen before! Kick it!",
+        "pageCount": 0,
+        "categories": [
+            "Comics & Graphic Novels"
+        ],
+        "thumbnail": "assets/img/ComicsCovers/9.jpg",
+        "language": "en",
+        "listPrice": {
+            "amount": 272,
+            "currencyCode": "USD",
+            "isOnSale": false
+        },
+        "reviews": [],
+        "isOnSale": false,
+        "id": "kYpHT",
+        "nextBook": "mjUGrO",
+        "prevBook": "Ecg6a"
+    }]
 }
 
 
