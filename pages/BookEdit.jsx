@@ -1,6 +1,6 @@
 import { bookSerevice } from "../services/books.service.js";
-import { GoogleBook } from "./GoogleBook.jsx";
-import { Loader } from "./Loader.jsx";
+import { GoogleBook } from "../cmps/GoogleBook.jsx";
+import { Loader } from "../cmps/Loader.jsx";
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 const { useState, useEffect, useRef } = React

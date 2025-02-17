@@ -1,10 +1,10 @@
 
 import { bookSerevice } from "../services/books.service.js";
-import { Loader } from "./Loader.jsx";
+import { Loader } from "../cmps/Loader.jsx";
 import { utilService } from "../services/util.service.js";
-import { LongTxt } from "./LongTxt.jsx"
-import { AddReview } from "./AddReview.jsx";
-import { ReviewsList } from "./ReviewsList.jsx";
+import { LongTxt } from "../cmps/LongTxt.jsx"
+import { AddReview } from "../cmps/AddReview.jsx";
+import { ReviewsList } from "../cmps/ReviewsList.jsx";
 import { reviewsService } from "../services/reviews.service.js";
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 

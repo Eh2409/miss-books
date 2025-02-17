@@ -1,13 +1,13 @@
 import { About } from "./cmps/About.jsx"
 import { AppHeader } from "./cmps/AppHeader.jsx"
-import { BookDetails } from "./cmps/BookDetails.jsx"
-import { BookEdit } from "./cmps/BookEdit.jsx"
 import { ContactUs } from "./cmps/ContactUs.jsx"
 import { UserMsg } from "./cmps/UserMsg.jsx"
 import { AboutUs } from "./pages/AboutUs.jsx"
 import { BookIndex } from "./pages/BookIndex.jsx"
 import { Newsletter } from './cmps/Newsletter.jsx'
 import { Home } from "./pages/Home.jsx"
+import { BookDetails } from "./pages/BookDetails.jsx"
+import { BookEdit } from "./pages/BookEdit.jsx"
 
 const Router = ReactRouterDOM.HashRouter
 const { Routes, Route } = ReactRouterDOM
