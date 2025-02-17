@@ -16,9 +16,51 @@
     overflow: hidden;
 }
 
-.slider .wrapper img {
-    flex: 1 0 100vw;
+.slider .wrapper .image-container {
+    position: relative;
 
+    width: 100vw;
+    height: 80vh;
+
+    padding: 0;
+    margin: 0;
+    flex: 1 0 100vw;
+}
+
+.slider .wrapper .image-container>.image-content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1em;
+}
+
+.image-container>.image-content>.title {
+    font-family: "Bangers", serif;
+    text-shadow: 0 -1px 4px #FFF, 0 -2px 10px rgb(244, 46, 148), 0 -10px 20px #da0c54, 0 -18px 40px rgb(131, 4, 57);
+
+    font-size: 2.2em;
+    color: white;
+
+    text-align: center;
+    rotate: -2deg;
+}
+
+.image-container>.image-content>.subtitle {
+    font-size: 1.2em;
+    color: rgb(255, 255, 255);
+    font-family: "Bangers", serif;
+
+    text-shadow: 0 -1px 4px #FFF, 0 -2px 10px rgb(244, 46, 148), 0 -5px 20px #da0c54, 0 -5px 20px rgb(131, 4, 57);
+    rotate: -2deg;
+}
+
+.slider .wrapper .image-container img {
     width: 100vw;
     height: 80vh;
     object-fit: cover;
@@ -37,6 +79,7 @@
 
 
 .slider>.btns>.dot {
+    background-image: none;
     background-color: var(--clr1bg);
     border: solid 3px red;
     height: 2em;
@@ -50,4 +93,28 @@
 
 .slider>.btns>.dot.active {
     background-color: white;
+}
+
+
+
+@media (min-width: 800px) {
+    .image-container>.image-content>.title {
+        font-size: 3em;
+    }
+
+    .image-container>.image-content>.subtitle {
+        font-size: 1.5em;
+    }
+
+}
+
+@media (min-width: 1150px) {
+    .image-container>.image-content>.title {
+        font-size: 4em;
+    }
+
+    .image-container>.image-content>.subtitle {
+        font-size: 2em;
+    }
+
 }

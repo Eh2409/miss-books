@@ -29,9 +29,11 @@
 }
 
 .user-msg.success button {
+    background-image: none;
     background-color: rgb(30, 204, 59);
 }
 
 .user-msg.error button {
+    background-image: none;
     background-color: rgb(219, 27, 27);
 }

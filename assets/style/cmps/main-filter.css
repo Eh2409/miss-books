@@ -23,7 +23,6 @@
     grid-template-columns: max-content 1fr;
     gap: 0.5em;
     width: 100%;
-    transition: 1000ms;
 }
 
 .main-filter>h3 {
@@ -125,5 +124,3 @@
     }
 
 }
-
-

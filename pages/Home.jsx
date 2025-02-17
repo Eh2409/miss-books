@@ -1,9 +1,10 @@
-import { SliderImage } from "../cmps/SliderImage.jsx";
+import { Slider } from "../cmps/Slider.jsx";
+
 
 export function Home() {
     return (
         <section className='full'>
-            <SliderImage />
+            <Slider />
         </section>
     )
 }
