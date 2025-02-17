@@ -39,6 +39,7 @@ export function BookEdit() {
         if (name === 'authors') value = value.split(',')
         if (name === 'categories') value = value.split(',')
         if (type === 'number') value = +value
+
         setEditBook(prev => ({ ...prev, [name]: value }))
     }
 
@@ -60,6 +61,10 @@ export function BookEdit() {
 
     function onSaveBook(ev) {
         ev.preventDefault()
+        setIsSave(true)
+
+        editBook.thumbnail = (/\.(jpeg|jpg|gif|png|webp)$/i.test(editBook.thumbnail)) ? editBook.thumbnail : 'assets/img/no-img.png'
+
         bookSerevice.save(editBook)
             .then(book => navigate(`/books/${book.id}`))
             .then(() => { showSuccessMsg('The book has been successfully saved') })
@@ -69,7 +74,7 @@ export function BookEdit() {
 
 
 
-    const { title, authors, categories, description, publishedDate, pageCount } = editBook
+    const { title, authors, categories, description, publishedDate, pageCount, thumbnail } = editBook
     const { amount, isOnSale } = editBook.listPrice
 
     if (isLoader) return <Loader />
@@ -80,24 +85,26 @@ export function BookEdit() {
 
             {editBook && <form onSubmit={onSaveBook} className='flex flex-column'>
                 <label htmlFor="title">title:</label>
-                <input type="text" id='title' name='title' value={title} onChange={onSetEditBook} required />
+                <input type="text" id='title' name='title' value={title} onChange={onSetEditBook} placeholder="Enter book title" required />
                 <label htmlFor="authors">authors: {(`(Between each author name insert ',')`)}</label>
-                <input type="authors" id='authors' name='authors' value={authors} onChange={onSetEditBook} required />
+                <input type="text" id='authors' name='authors' value={authors} onChange={onSetEditBook} placeholder="Enter book authors" required />
                 <label htmlFor="categories">categories: {(`(Between each category name insert ',')`)}</label>
-                <input type="authors" id='categories' name='categories' value={categories} onChange={onSetEditBook} required />
+                <input type="text" id='categories' name='categories' value={categories} onChange={onSetEditBook} placeholder="Enter book categories" required />
                 <label htmlFor="description">description:</label>
-                <input type="text" id='description' name='description' value={description} onChange={onSetEditBook} required />
+                <input type="text" id='description' name='description' value={description} onChange={onSetEditBook} placeholder="Enter book description" required />
                 <label htmlFor="price">price:</label>
-                <input type="number" id='price' name='listPrice.amount' value={amount || ''} onChange={onSetEditBookNested} required />
+                <input type="number" id='price' name='listPrice.amount' value={amount || ''} onChange={onSetEditBookNested} placeholder="Enter book price" required />
                 <label htmlFor="publishedDate">published Date:</label>
-                <input type="number" id='publishedDate' name='publishedDate' value={publishedDate || ''} onChange={onSetEditBook} required />
+                <input type="number" id='publishedDate' name='publishedDate' value={publishedDate || ''} onChange={onSetEditBook} placeholder="Enter published date" required />
                 <label htmlFor="pageCount">page Count:</label>
-                <input type="number" id='pageCount' name='pageCount' value={pageCount || ''} onChange={onSetEditBook} required />
+                <input type="number" id='pageCount' name='pageCount' value={pageCount || ''} onChange={onSetEditBook} required placeholder="Enter page count" />
+                <label htmlFor="thumbnail">thumbnail:</label>
+                <input type="url" id='thumbnail' name='thumbnail' value={thumbnail || ''} onChange={onSetEditBook} placeholder="Enter image URL" />
                 <div>
                     <label htmlFor="isOnSale">On Sale:</label>
                     <input type="checkbox" id='isOnSale' name='listPrice.isOnSale' checked={isOnSale} onChange={onSetEditBookNested} />
                 </div>
-                <button onClick={() => { setIsSave(true) }}>{isSave ? <div className='mini-loader'></div> : 'Save'}</button>
+                <button>{isSave ? <div className='mini-loader'></div> : 'Save'}</button>
 
             </form>}
 
