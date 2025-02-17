@@ -24,17 +24,18 @@ function query(filterBy) {
             }
 
             if (filterBy.title) {
-                books = books.filter(book => book.title.toLowerCase().includes(filterBy.title.toLowerCase()))
+                const regex = new RegExp(filterBy.title, 'i')
+                books = books.filter(book => regex.test(book.title))
             }
 
             if (filterBy.authors) {
-                books = books.filter(book => book.authors.toString().toLowerCase().includes(filterBy.authors.toLowerCase()))
+                const regex = new RegExp(filterBy.authors, 'i')
+                books = books.filter(book => regex.test(book.authors))
             }
 
             if (filterBy.categories) {
-                books = books.filter(book => {
-                    return book.categories.toString().toLowerCase().includes(filterBy.categories.toLowerCase())
-                })
+                const regex = new RegExp(filterBy.categories, 'i')
+                books = books.filter(book => regex.test(book.categories))
             }
 
             if (filterBy.isOnSale) {
@@ -107,7 +108,7 @@ function getEmptyBook() {
         description: '',
         pageCount: 0,
         categories: [],
-        thumbnail: 'assets/img/no-img.png',
+        thumbnail: '',
         language: 'en',
         listPrice: {
             amount: 0,
