@@ -68,6 +68,14 @@
     content: '\f005';
 }
 
+.fa.pause::before {
+    content: '\f04c';
+}
+
+.fa.play::before {
+    content: '\f04b';
+}
+
 /* colors */
 
 .red {

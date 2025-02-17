@@ -3,20 +3,23 @@ const { useState, useEffect, useRef } = React
 export function Slider(props) {
 
     const [activeImg, setActiveImg] = useState(0)
+    const [isPause, setisPause] = useState(false)
 
     const wrapperRef = useRef()
     const sliderInterval = useRef(null)
     const activeImgRef = useRef(0)
 
+    console.log(sliderInterval);
+
 
     useEffect(() => {
-        sliderInterval.current = setInterval(onAutoSlide, 1000 * 8)
+        PausePlaySlider()
         window.addEventListener('resize', onResize)
         return (() => {
             clearInterval(sliderInterval.current)
             window.removeEventListener('resize', onResize)
         })
-    }, [])
+    }, [isPause])
 
     useEffect(() => {
         activeImgRef.current = activeImg
@@ -38,12 +41,13 @@ export function Slider(props) {
     }
 
     function onSetActiveImg(activeImg) {
-        if (sliderInterval.current) {
+        if (!isPause) {
             clearInterval(sliderInterval.current)
-            sliderInterval.current = null
-            setTimeout(() => {
-                sliderInterval.current = setInterval(onAutoSlide, 1000 * 8)
-            }, 1000 * 10)
+            sliderInterval.current = setInterval(onAutoSlide, 1000 * 8)
+
+            // setTimeout(() => {
+            //     sliderInterval.current = setInterval(onAutoSlide, 1000 * 8)
+            // }, 1000 * 10)
         }
 
         setActiveImg(activeImg)
@@ -61,26 +65,41 @@ export function Slider(props) {
         wrapperRef.current.scrollLeft = move
     }
 
+    function onPause() {
+        setisPause(prev => prev = !isPause)
+    }
+
+    function PausePlaySlider() {
+        if (isPause) {
+            console.log('stop');
+            clearInterval(sliderInterval.current)
+            console.log(sliderInterval.current);
+        } else {
+            console.log('play');
+            sliderInterval.current = setInterval(onAutoSlide, 1000 * 8)
+        }
+    }
+
     return (
         <div className='slider'>
             <div ref={wrapperRef} className="wrapper flex">
 
-                <dir className='image-container'>
+                <div className='image-container'>
                     <div className='image-content'>
                         <div className='title'>Welcome to Miss Comics</div>
-                        <div className='subtitle'>The best comics selling site in the universe!</div>
+                        <div className='subtitle'>The best comics selling site in the Multiverse!</div>
                     </div>
                     <img src="assets/img/5.jpg" alt="" />
-                </dir>
-                <dir className='image-container'>
+                </div>
+                <div className='image-container'>
                     <img src="assets/img/2.jpg" alt="" />
-                </dir>
-                <dir className='image-container'>
+                </div>
+                <div className='image-container'>
                     <img src="assets/img/3.jpg" alt="" />
-                </dir>
-                <dir className='image-container'>
+                </div>
+                <div className='image-container'>
                     <img src="assets/img/4.jpg" alt="" />
-                </dir>
+                </div>
 
             </div>
             <div className='btns'>
@@ -88,6 +107,7 @@ export function Slider(props) {
                 <button onClick={() => (onSetActiveImg(1))} className={`dot ${activeImg === 1 ? 'active' : ''}`}></button>
                 <button onClick={() => (onSetActiveImg(2))} className={`dot ${activeImg === 2 ? 'active' : ''}`}></button>
                 <button onClick={() => (onSetActiveImg(3))} className={`dot ${activeImg === 3 ? 'active' : ''}`}></button>
+                <button className='pause-btn' onClick={onPause}><span className={`fa ${isPause ? 'play' : 'pause'}`}></span></button>
             </div>
         </div>
     )

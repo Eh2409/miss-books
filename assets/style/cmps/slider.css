@@ -95,6 +95,10 @@
     background-color: white;
 }
 
+.slider>.btns>.pause-btn {
+    color: white;
+}
+
 
 
 @media (min-width: 800px) {
