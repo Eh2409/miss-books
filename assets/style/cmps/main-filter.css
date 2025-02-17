@@ -23,6 +23,7 @@
     grid-template-columns: max-content 1fr;
     gap: 0.5em;
     width: 100%;
+    transition: 1000ms;
 }
 
 .main-filter>h3 {
@@ -51,9 +52,22 @@
 }
 
 
-.main-filter button {
+.main-filter .filter-btn {
     place-self: center;
-    grid-column: 2 span;
+    grid-column: 5 span;
+}
+
+.main-filter .filter-btn>.more-filtes-btn {
+    cursor: pointer;
+    color: rgb(255, 60, 0);
+    transition: 200ms;
+
+    &:hover {
+        color: rgb(255, 255, 255);
+    }
+}
+
+.main-filter button {
     font-size: 1.2em;
     font-weight: bold;
     align-self: center;
@@ -109,4 +123,7 @@
     .main-filter>form {
         width: 80%;
     }
+
 }
+
+
