@@ -10,7 +10,7 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 const { useState, useEffect, useRef } = React
 
-const { useParams, Link } = ReactRouterDOM
+const { useParams, Link, useNavigate } = ReactRouterDOM
 
 export function BookDetails(props) {
 
@@ -29,8 +29,11 @@ export function BookDetails(props) {
     function onGetBook(bookId) {
         bookSerevice.get(bookId)
             .then(book => setBook(book))
-            .catch(error => console.error(error))
-            .catch(() => showErrorMsg('An error occurred while loading the book'))
+            .catch(error => {
+                console.error(error)
+                showErrorMsg('An error occurred while loading the book')
+                navigate(`/books`)
+            })
             .finally(() => setIsLoad(false))
     }
 
