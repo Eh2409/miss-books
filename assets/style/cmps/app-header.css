@@ -1,11 +1,20 @@
 .app-header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    backdrop-filter: blur(0px);
+
     font-family: "Bangers", serif;
     font-weight: 400;
 
-    /* background-color: var(--clr1); */
     color: var(--clr1bg);
     padding-block: 1em;
     padding-inline: 1em;
+    transition: backdrop-filter 200ms;
+}
+
+.app-header.scroll {
+    backdrop-filter: blur(4px);
 }
 
 .app-header>.main-logo>a {
@@ -45,6 +54,22 @@
     .app-header {
         padding-inline: 6em;
     }
+
+    .app-heade>.main-logo>a {
+        font-size: 1.2em;
+    }
+
+    .app-header>nav {
+        font-size: 1.5em;
+    }
+
+    .app-header.scroll>.main-logo>a {
+        font-size: 1.2em;
+    }
+
+    .app-header.scroll>nav {
+        font-size: 1.5em;
+    }
 }
 
 @media (min-width: 1150px) {
@@ -55,7 +80,6 @@
     .app-header>.main-logo>a {
         font-size: 1.8em;
     }
-
 
     .app-header>nav {
         font-size: 2em;

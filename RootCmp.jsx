@@ -17,9 +17,9 @@ export function App() {
     return (
         <Router>
             <section className="app">
-                <header className="app-header flex align-center justify-between">
-                    <AppHeader />
-                </header>
+
+                <AppHeader />
+
                 <main className="main-layout">
                     <Routes>
                         <Route path='/' element={<Home />} />
