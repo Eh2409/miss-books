@@ -19,6 +19,7 @@ export function BookDetails(props) {
     console.log(book);
 
     const params = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         onGetBook(params.bookId)
@@ -101,9 +102,13 @@ export function BookDetails(props) {
         setBook(prev => ({ ...prev, rating: currRating }))
     }
 
+    function onEditBook(bookId) {
+        navigate(`/books/book-edit/${bookId}`)
+    }
+
 
     if (!book) return <Loader />
-    const { title, rating, authors, description, thumbnail, publishedDate, pageCount, categories, language, nextBook, prevBook, reviews } = book
+    const { id, title, rating, authors, description, thumbnail, publishedDate, pageCount, categories, language, nextBook, prevBook, reviews } = book
     const { amount, currencyCode, isOnSale } = book.listPrice
     return (
         <React.Fragment>
@@ -113,6 +118,7 @@ export function BookDetails(props) {
                 <div className='thumbnail-wrapper'>
                     <img src={`${thumbnail}`} alt={title} className='book-thumbnail' />
                     {isOnSale && <span className='ribbon'>On Sale</span>}
+                    <button onClick={() => onEditBook(id)} className='edit-book-btn' title='Edit book'><span className='fa pen'></span></button>
                 </div>
 
                 <div className='selected-book-content flex flex-column'>

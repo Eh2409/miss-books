@@ -23,6 +23,13 @@
 }
 
 
+.book-details>.thumbnail-wrapper>.edit-book-btn {
+    position: absolute;
+    top: 0;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+}
+
 .book-details>.thumbnail-wrapper>.ribbon {
     position: absolute;
     top: 20px;
