@@ -345,7 +345,7 @@ function _demoData() {
         "prevBook": "DD2LU"
     }, {
         "isbn": "9781506742656",
-        "title": "Marvel's Spider-Man: Miles Morales--The Poster Collection",
+        "title": "Marvel's Spider-Man: Miles Morales",
         "rating": 0,
         "subtitle": "",
         "authors": [],
@@ -393,6 +393,34 @@ function _demoData() {
         "id": "kYpHT",
         "nextBook": "mjUGrO",
         "prevBook": "Ecg6a"
+    }, {
+        "isbn": "9781302504823",
+        "title": "Wolverine",
+        "rating": 0,
+        "subtitle": "Savage Origins",
+        "authors": [
+            "Ben Acker",
+            "Ben Blacker",
+            "Mark Millar"
+        ],
+        "publishedDate": 2018,
+        "description": "Collects Wolverine: Season One, Wolverine (2003) #20. Discovered as a feral mutant prowling the wilds! Recruited as a covert operative by a secretive government agency! Destined to pursue a dream of peaceful coexistence between man and mutant! Witness the birth of the Wolverine as the man called Logan makes his journey from animalistic wildling to beloved X-Man. Including Logans first blockbuster battle with the Hulk, as well as pivotal appearances by Sabretooth and Wendigo, this blood-splattered tale features a contemporary retelling of the Clawed Canucks formative years! Plus: A brainwashed Wolverine slices and dices his way through foes and friends alike in WOLVERINE (2003) #20!",
+        "pageCount": 141,
+        "categories": [
+            "Comics & Graphic Novels"
+        ],
+        "thumbnail": "assets/img/ComicsCovers/23.jpg",
+        "language": "en",
+        "listPrice": {
+            "amount": 325,
+            "currencyCode": "USD",
+            "isOnSale": false
+        },
+        "reviews": [],
+        "isOnSale": false,
+        "id": "DKHPj",
+        "nextBook": "u1HMkb",
+        "prevBook": "kYpHT"
     }]
 }
 
