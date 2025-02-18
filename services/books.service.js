@@ -11,6 +11,7 @@ export const bookSerevice = {
     isBookInData,
     getEmptyBook,
     addGoogleBook,
+    getFilterFromSearchParams,
 }
 
 const BOOK_KEY = 'book_key'
@@ -55,7 +56,7 @@ function query(filterBy) {
             }
 
             if (filterBy.publishedDate) {
-                books = books.filter(book => book.publishedDate === filterBy.publishedDate)
+                books = books.filter(book => book.publishedDate >= filterBy.publishedDate)
             }
 
             return books
@@ -63,7 +64,24 @@ function query(filterBy) {
 }
 
 function getDefaultFilterBy() {
-    return { title: '', price: '', authors: '', publishedDate: '', isOnSale: '', categories: '', rating: '' }
+    return { title: '', price: '', pageCount: '', authors: '', publishedDate: '', isOnSale: false, categories: '', rating: 0 }
+}
+
+
+function getFilterFromSearchParams(searchParams) {
+
+    const defaultFilterBy = { ...getDefaultFilterBy() }
+    const filterBy = {}
+
+    for (const field in defaultFilterBy) {
+        if (field === 'isOnSale') {
+            filterBy[field] = searchParams.get(`${field}`) === 'true' ? true : false
+        } else {
+            filterBy[field] = searchParams.get(`${field}`) || defaultFilterBy[field]
+        }
+    }
+
+    return filterBy
 }
 
 function remove(bookId) {

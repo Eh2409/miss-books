@@ -3,18 +3,17 @@ import { MoreFilters } from './MoreFilters.jsx'
 
 const { useState, useEffect, useRef } = React
 
-export function BookFilter({ filterBy, onSetFilterBy }) {
+export function BookFilter({ filterBy, onSetFilterBy, defaultFilterBy }) {
 
   const [editFilterBy, setEditFilterBy] = useState({ ...filterBy })
-  const [minRating, setminRating] = useState(0)
   const [moreFilters, setMoreFilters] = useState(false)
 
   // debounce
   // const filterDebounce = useRef(utilService.debounce(onSetFilterBy, 1000))
-  console.log(editFilterBy)
+  // console.log(editFilterBy)
 
   const formRef = useRef()
-  const defaultFilterRef = useRef({ ...filterBy })
+  const defaultFilterRef = useRef({ ...defaultFilterBy })
 
   useEffect(() => {
     // filterDebounce.current(editFilterBy)
@@ -24,9 +23,11 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
   function onSetEditFilterBy(ev) {
     var { value, type, name, checked } = ev.target
 
-    if (name === 'rating') setminRating(value)
+
     if (type === 'number') value = +value
     if (type === 'checkbox') value = checked
+    console.log(typeof value);
+
     setEditFilterBy(prev => ({ ...prev, [name]: value }))
   }
 
@@ -37,8 +38,7 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
 
   function onReset() {
     formRef.current.reset()
-    setminRating(0)
-    setEditFilterBy(defaultFilterRef.current)
+    setEditFilterBy({ ...defaultFilterRef.current })
   }
 
   // fnc with view transition
@@ -53,15 +53,17 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
     setMoreFilters(prev => !prev)
   }
 
+  const { title, price } = filterBy
+
   return (
     <section className='main-filter'>
       <h3>filter books</h3>
       <form className='flex flex-column align-center' ref={formRef}>
         <label htmlFor="title">title:</label>
-        <input type="search" name='title' id='title' onChange={onSetEditFilterBy} placeholder='Enter book title' />
+        <input type="search" name='title' id='title' value={title} onChange={onSetEditFilterBy} placeholder='Enter book title' />
         <label htmlFor="price">min price:</label>
-        <input type="number" name='price' id='price' onChange={onSetEditFilterBy} placeholder='Enter book pirce number' />
-        {moreFilters && <MoreFilters onSetEditFilterBy={onSetEditFilterBy} minRating={minRating} />}
+        <input type="number" name='price' id='price' value={+price || ''} onChange={onSetEditFilterBy} placeholder='Enter book pirce number' />
+        {moreFilters && <MoreFilters onSetEditFilterBy={onSetEditFilterBy} filterBy={filterBy} />}
         {/* <button>Search</button> */}
         <div className='filter-btn flex justify-center  align-center'>
           <button type='button' onClick={onReset}>reset</button>
