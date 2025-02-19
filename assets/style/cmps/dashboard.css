@@ -1,0 +1,91 @@
+.dashboard {
+    background-color: rgba(241, 210, 54, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    min-height: 80vh;
+    margin-block-end: 1em;
+    padding: 1em;
+    color: black;
+}
+
+.chart>.chart-name {
+    text-align: center;
+    color: white;
+    text-transform: capitalize;
+    font-family: "Bangers", serif;
+}
+
+.chart>.chart-wrapper {
+    position: relative;
+    border: solid 2px rgb(49, 38, 101);
+    background-color: rgba(247, 255, 255);
+    height: 300px;
+    margin-inline-start: 3em;
+    margin-block-end: 4em;
+}
+
+.chart>.chart-wrapper ul {
+    position: absolute;
+    bottom: 0;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    gap: 1em;
+}
+
+.chart>.chart-wrapper .chart-stats li {
+    align-content: end;
+    text-align: center;
+}
+
+.chart>.chart-wrapper .chart-stats li .value-name {
+    position: relative;
+    display: block;
+    background-color: aqua;
+    background-image: linear-gradient(to top, #0000002e, #8ad1fd35);
+    text-align: center;
+    font-weight: bolder;
+    color: white;
+    font-size: clamp(0.9em, 1.5vw, 2em);
+    animation: barUp 1s;
+    z-index: 1;
+}
+
+.chart>.chart-wrapper .chart-stats li .value-name::after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    text-align: center;
+    content: attr(title);
+    font-size: clamp(0.9em, 1vw, 2em);
+}
+
+
+.chart>.chart-wrapper .percentage li {
+    position: relative;
+    /* height: 25%; */
+    height: 10%;
+}
+
+.chart>.chart-wrapper .percentage li:not(:first-child) {
+    border-block-start: solid 1px blue;
+}
+
+.chart>.chart-wrapper .percentage li::after {
+    position: absolute;
+    left: -3em;
+    top: -0.5em;
+    content: attr(title);
+    text-align: center;
+    filter: hue-rotate();
+    color: white;
+}
+
+@keyframes barUp {
+    from {
+        height: 0;
+    }
+}

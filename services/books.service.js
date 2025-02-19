@@ -12,6 +12,7 @@ export const bookSerevice = {
     getEmptyBook,
     addGoogleBook,
     getFilterFromSearchParams,
+    getBookFieldPercentages
 }
 
 const BOOK_KEY = 'book_key'
@@ -137,7 +138,6 @@ function getEmptyBook() {
     }
 }
 
-
 function _setNextPrevBookId(book) {
     return asyncStorageService.query(BOOK_KEY).then(books => {
         const idx = books.findIndex(currBook => currBook.id === book.id)
@@ -150,6 +150,32 @@ function _setNextPrevBookId(book) {
     })
 
 }
+
+
+function getBookFieldPercentages(field) {
+    return asyncStorageService.query(BOOK_KEY)
+        .then(books => {
+            const fieldCounts = countBooksByField(books, field)
+            const fieldPercentages = Object.keys(fieldCounts).map(title =>
+            ({
+                title: title,
+                value: Math.round((fieldCounts[title] / books.length) * 100)
+            })
+            )
+            return fieldPercentages
+        })
+}
+
+function countBooksByField(books, field) {
+    return books.reduce((acc, book) => {
+        const bookField = book[field]
+        console.log(bookField);
+        if (!acc[bookField]) acc[bookField] = 1
+        else acc[bookField]++
+        return acc
+    }, {})
+}
+
 
 function _createBooks() {
     const books = storageService.loadFromStorage(BOOK_KEY)
@@ -441,7 +467,6 @@ function _demoData() {
         "prevBook": "kYpHT"
     }]
 }
-
 
 
 // function _creatDemoBooks() {

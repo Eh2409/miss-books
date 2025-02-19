@@ -13,7 +13,7 @@ export function AppHeader(props) {
     })
 
     function onScrollBlurToHeader() {
-        if (window.scrollY > 10) {
+        if (window.scrollY > 1) {
             headerRef.current.classList.add('scroll')
         } else {
             headerRef.current.classList.remove('scroll')
@@ -28,6 +28,7 @@ export function AppHeader(props) {
                 <NavLink to='/'> Home</NavLink>
                 <NavLink to='/about-us'>About</NavLink>
                 <NavLink to='/books'>Books</NavLink>
+                <NavLink to='/dashboard'>Dashboard</NavLink>
             </nav>
         </header>
 
