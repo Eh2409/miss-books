@@ -93,6 +93,10 @@
     align-items: center;
 }
 
+.add-review>form>label {
+    font-weight: bold;
+}
+
 .add-review>form input {
     width: 80%;
 }
@@ -121,6 +125,10 @@
 
 .add-review>form>.rating {
     justify-content: space-between;
+}
+
+.add-review>form>.rating>.text-rating {
+    width: max-content;
 }
 
 .add-review .star-rating {
