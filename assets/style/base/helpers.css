@@ -84,6 +84,14 @@
     content: '\f304';
 }
 
+.fa.bar::before {
+    content: '\f0c9';
+}
+
+.fa.close::before {
+    content: '\f00d';
+}
+
 /* colors */
 
 .red {
