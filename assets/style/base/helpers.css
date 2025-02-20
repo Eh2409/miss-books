@@ -92,6 +92,14 @@
     content: '\f00d';
 }
 
+.fa.plus::before {
+    content: '\2b';
+}
+
+.fa.minus::before {
+    content: '\f068';
+}
+
 /* colors */
 
 .red {

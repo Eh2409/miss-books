@@ -1,5 +1,6 @@
 import { BookFilter } from '../cmps/BookFilter.jsx';
 import { BookList } from '../cmps/BookList.jsx';
+import { BookTable } from '../cmps/BookTable.jsx';
 import { Loader } from '../cmps/Loader.jsx';
 import { bookSerevice } from '../services/books.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
@@ -59,7 +60,9 @@ export function BookIndex() {
     <section>
       <button><Link to='/books/book-add'>Add Book</Link></button>
       <BookFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} defaultFilterBy={bookSerevice.getDefaultFilterBy()} />
-      {books.length > 0 ? <BookList books={books} onRemoveBook={onRemoveBook} onSetIsRemoveBookload={onSetIsRemoveBookload} isRemoveBookload={isRemoveBookload} />
+      {/* {books.length > 0 ? <BookList books={books} onRemoveBook={onRemoveBook} onSetIsRemoveBookload={onSetIsRemoveBookload} isRemoveBookload={isRemoveBookload} />
+        : <h2 className='book-not-found flex justify-center align-center'>Sorry, the book you were looking for is not found.</h2>} */}
+      {books.length > 0 ? <BookTable books={books} onRemoveBook={onRemoveBook} onSetIsRemoveBookload={onSetIsRemoveBookload} isRemoveBookload={isRemoveBookload} />
         : <h2 className='book-not-found flex justify-center align-center'>Sorry, the book you were looking for is not found.</h2>}
     </section>
   )
