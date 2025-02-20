@@ -15,6 +15,15 @@
     border-radius: 100vh;
 }
 
+.google-book .book-res-item {
+    text-align: center;
+}
+
+.google-book .book-res-item button {
+    white-space: nowrap;
+}
+
+
 .google-book>.searching {
     margin: 1em;
     padding: 1em;
@@ -76,6 +85,10 @@
 
     .google-book>ul {
         width: 70%;
+    }
+
+    .google-book .book-res-item button {
+        font-weight: bold;
     }
 
 }

@@ -29,6 +29,7 @@
 
 .book-table>tbody .on-sale {
     padding: 0.5em;
+    line-height: 3em;
     text-align: center;
     background-image: linear-gradient(to right bottom, #0fdf43, #1cda3b, #24d632, #2ad128, #2fcd1d, #37cc17, #3dcc0f, #43cb05, #4dce04, #56d102, #5fd401, #67d700);
     color: white;
@@ -36,6 +37,7 @@
     box-shadow: 2px 2px 10px rgb(158, 248, 182);
     border-radius: 100vh;
     text-transform: capitalize;
+    white-space: nowrap;
 }
 
 .book-table>tbody .book-btns {

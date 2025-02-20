@@ -77,7 +77,7 @@ export function GoogleBook(props) {
             {booksRes &&
                 <ul>
                     {booksRes.map((book, idx) => {
-                        return <li key={idx} className='flex justify-between align-center'>
+                        return <li key={idx} className='book-res-item flex justify-between align-center'>
                             <img src={book.thumbnail} alt={book.title} className='google-book-thumbnail' />
                             <span>{book.title}</span>
                             <button onClick={() => { onAddBook(book); onSetIsAddBookLoad(book.isbn) }}>
