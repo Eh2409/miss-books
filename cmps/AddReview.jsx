@@ -106,10 +106,10 @@ export function AddReview({ onAddReview }) {
   )
 }
 
-function DynamicInput({ inputType, onInpitReview, onSetIsChecked, isChecked }) {
+function DynamicInput({ inputType, onInpitReview, ...props }) {
   switch (inputType) {
     case 'stars':
-      return <RateByStars onSetIsChecked={onSetIsChecked} isChecked={isChecked} onInpitReview={onInpitReview} />
+      return <RateByStars onInpitReview={onInpitReview} {...props} />
     case 'textbox':
       return <RateByTextbox onInpitReview={onInpitReview} />
     case 'select':
