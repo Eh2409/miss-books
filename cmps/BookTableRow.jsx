@@ -6,7 +6,6 @@ const { useState, useEffect, useRef } = React
 export function BookTableRow({ book, onRemoveBook, onSetIsRemoveBookload, isRemoveBookload }) {
 
     const [isBookPreviewOpen, setIsBookPreviewOpen] = useState(false)
-    console.log(isBookPreviewOpen);
 
     function onSetIsBookPreviewOpen() {
         setIsBookPreviewOpen(prev => prev = !isBookPreviewOpen)

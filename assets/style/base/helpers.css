@@ -100,6 +100,14 @@
     content: '\f068';
 }
 
+.fa.table::before {
+    content: '\f00b';
+}
+
+.fa.list::before {
+    content: '\f009';
+}
+
 /* colors */
 
 .red {

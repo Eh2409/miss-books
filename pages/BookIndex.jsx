@@ -16,6 +16,7 @@ export function BookIndex() {
   const [books, setBooks] = useState(null)
   const [filterBy, setFilterBy] = useState({ ...bookSerevice.getFilterFromSearchParams(searchParams) })
   const [isRemoveBookload, setIsRemoveBookload] = useState(null)
+  const [displayType, setDisplayType] = useState('list')
 
 
   // console.log(books);
@@ -54,16 +55,45 @@ export function BookIndex() {
   //   setSearchParams({})
   // }
 
+  function onSetDisplayType(type) {
+    setDisplayType(type)
+  }
 
   if (!books) return <Loader />
   return (
     <section>
-      <button><Link to='/books/book-add'>Add Book</Link></button>
-      <BookFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} defaultFilterBy={bookSerevice.getDefaultFilterBy()} />
-      {/* {books.length > 0 ? <BookList books={books} onRemoveBook={onRemoveBook} onSetIsRemoveBookload={onSetIsRemoveBookload} isRemoveBookload={isRemoveBookload} />
-        : <h2 className='book-not-found flex justify-center align-center'>Sorry, the book you were looking for is not found.</h2>} */}
-      {books.length > 0 ? <BookTable books={books} onRemoveBook={onRemoveBook} onSetIsRemoveBookload={onSetIsRemoveBookload} isRemoveBookload={isRemoveBookload} />
-        : <h2 className='book-not-found flex justify-center align-center'>Sorry, the book you were looking for is not found.</h2>}
-    </section>
+
+      <div className='filter-wrapper'>
+        <div className='books-btns'>
+          <button className='add-book-btn' ><Link to='/books/book-add'>Add Book</Link></button>
+          <div>display:</div>
+          <button className={`fa list ${displayType === 'list' ? 'active' : ''}`} onClick={() => onSetDisplayType('list')}></button>
+          <button className={`fa table ${displayType === 'table' ? 'active' : ''}`} onClick={() => onSetDisplayType('table')}></button>
+        </div>
+        <BookFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} defaultFilterBy={bookSerevice.getDefaultFilterBy()} />
+      </div>
+
+      <DynamicDisplay
+        displayType={displayType}
+        books={books}
+        onRemoveBook={onRemoveBook}
+        onSetIsRemoveBookload={onSetIsRemoveBookload}
+        isRemoveBookload={isRemoveBookload}
+      />
+    </section >
   )
+}
+
+
+function DynamicDisplay({ displayType, books, ...props }) {
+
+  if (books.length > 0 && displayType === 'list') {
+    return <BookList books={books} {...props} />
+  } else if (books.length > 0 && displayType === 'table') {
+    return <BookTable books={books} {...props} />
+  } else if (books.length <= 0) {
+    return <h2 className='book-not-found flex justify-center align-center'>Sorry, the book you were looking for is not found.</h2>
+  } else {
+    return null
+  }
 }
